@@ -1,2 +1,2 @@
 # narrative-treatment-plan
-Tool to help create Narrative treatment plan
+Narrative Notetaking App
