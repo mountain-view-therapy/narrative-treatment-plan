@@ -33,6 +33,8 @@ const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
     modalityPlanned: types.enumeration('modalityPlanned', modalities),
     meetingFrequency: types.enumeration('frequency', frequency),
     treatmentLength: types.enumeration('length', length),
+    otherMeetingFrequency: types.string,
+    otherTreatmentLength: types.string,
 
 
 }).actions((self) => {
@@ -44,84 +46,20 @@ const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
             self.meetingFrequency = frequency
         },
         setTreatmentLength(length: Length): void {
-        self.treatmentLength = length
+            self.treatmentLength = length
         },
-
-
-
-
-
+        setOtherMeetingFrequency(frequency: string): void {
+            self.otherMeetingFrequency = frequency
+        },
+        setOtherTreatmentLength(length: string): void {
+            self.otherTreatmentLength = length
+        },
         setClientInitials(intitals: string): void {
             self.clientInitials = intitals
         },
-        setTelehealthPlatform(platform: string): void {
-            self.telehealthPlatform = platform
-        },
-        setTelehealthAppropriate(appropriate: string): void {
-            self.telehealthAppropriate = appropriate
-        },
-        setTelehealthConsent(consent: string): void {
-            self.telehealthConsent = consent
-        },
-        setOtherAddress(address: string): void {
-            self.otherAddress = address
-        },
-        setStartTime(startTime: string): void {
-            self.startTime = startTime
-        },
-        setEndTime(endTime: string): void {
-            self.endTime = endTime
-        },
-
-        setOtherCptCode(code: string): void {
-            self.otherCptCode = code
-        },
-
-        setClientPresent(present: boolean): void {
-            self.clientPresent = present
-        },
-        setSpousePresent(present: boolean): void {
-            self.spousePresent = present
-        },
-        setPartnerPresent(present: boolean): void {
-            self.partnerPresent = present
-        },
-        setParentPresent(present: boolean): void {
-            self.parentPresent = present
-        },
-        setSiblingPresent(present: boolean): void {
-            self.siblingPresent = present
-        },
-        setchildPresent(present: boolean): void {
-            self.childPresent = present
-        },
-        setOtherPresent(present: boolean): void {
-            self.otherPresent = present
-        },
-        setSpouseName(name: string): void {
-            self.spouseName = name
-        },
-        setPartnerName(name: string): void {
-            self.partnerName = name
-        },
-        setParentName(name: string): void {
-            self.parentName = name
-        },
-        setSiblingName(name: string): void {
-            self.siblingName = name
-        },
-        setchildName(name: string): void {
-            self.childName = name
-        },
-        setOtherName(name: string): void {
-            self.otherName = name
-        },
-
-
         setFirstDateOfService(date: Date): void {
             self.firstDateOfService = date
         }
-
     }
 })
 

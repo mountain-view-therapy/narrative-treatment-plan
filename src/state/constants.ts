@@ -319,6 +319,8 @@ export const initialState = {
             modalityPlanned: modalities[0],
             meetingFrequency: frequency[0],
             treatmentLength: length[0],
+            otherTreatmentLength: "",
+            otherMeetingFrequency:"",
         },
         mentalStatusExam: {
             cognitiveFunctioning: "Oriented / Alert",

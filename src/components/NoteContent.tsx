@@ -1,7 +1,3 @@
-import { Typography } from "@mui/material"
-import { Box } from "@mui/system"
-import dayjs from 'dayjs-ext'
-import timeZonePlugin from 'dayjs-ext/plugin/timeZone'
 import { observer } from "mobx-react-lite"
 import { getState } from "../state/provider"
 
@@ -10,31 +6,12 @@ const NoteContent = () => {
     const { meetingInformation: {
         meetingLogistics: {
             clientInitials,
-            telehealthPlatform,
-            telehealthAppropriate,
-            telehealthConsent,
-            startTime,
-            endTime,
-            clientPresent,
-            spouseName,
-            spousePresent,
-            partnerName,
-            partnerPresent,
-            parentName,
-            parentPresent,
-            siblingName,
-            siblingPresent,
-            childName,
-            childPresent,
-            otherName,
-            otherPresent,
-
-
-
             firstDateOfService,
             modalityPlanned,
             meetingFrequency,
-            treatmentLength
+            treatmentLength,
+            otherTreatmentLength,
+            otherMeetingFrequency,
         },
         mentalStatusExam: {
             cognitiveFunctioning,
@@ -87,7 +64,6 @@ const NoteContent = () => {
         nextMeeting,
     } } = getState()
 
-    dayjs.extend(timeZonePlugin).locale('cs')
 
     const replaceText = (text: string, replacementText: string) => {
         return text.replace('[PROBLEM]', identifiedProblem).replace('[CLIENT]', clientInitials).replace('[REPLACEMENT]', replacementText)
@@ -115,7 +91,7 @@ const NoteContent = () => {
 
 
             <div>
-                <b>First Date of Service:</b>
+                <b>First Date of Service: </b>
                 {firstDateOfService.toDateString()}
             </div>
 
@@ -124,18 +100,18 @@ const NoteContent = () => {
             </div>
 
             <div>
-                <b>Modality Planned:</b>
+                <b>Modality Planned: </b>
                 {modalityPlanned}
             </div>
 
             <div>
-                <b>Meeting Frequency:</b>
-                {meetingFrequency}
+                <b>Meeting Frequency: </b>
+                {meetingFrequency === 'Other' ? otherMeetingFrequency : meetingFrequency}
             </div>
 
             <div>
                 <b>Estimated Length of Treatment:</b>
-                {treatmentLength}
+                {treatmentLength === 'Other' ? otherTreatmentLength :  treatmentLength}
             </div>
 
 
