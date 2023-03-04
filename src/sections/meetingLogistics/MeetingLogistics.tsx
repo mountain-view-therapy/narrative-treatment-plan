@@ -2,9 +2,13 @@ import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, NativeSe
 import { Box, Container, Stack } from '@mui/system';
 import { observer } from 'mobx-react-lite';
 import { getState } from '../../state/provider';
-import { possibleCptCodes } from '../../state/constants';
+import { frequency, modalities } from '../../state/constants';
 import TimePicker from '../../components/TimePicker';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import { useState } from 'react';
+
 
 const MeetingLogistics = () => {
   const { meetingInformation: {
@@ -15,8 +19,6 @@ const MeetingLogistics = () => {
       //telehealthConsent,
       startTime,
       endTime,
-      cptCode,
-      otherCptCode,
       clientPresent,
       spouseName,
       spousePresent,
@@ -32,8 +34,6 @@ const MeetingLogistics = () => {
       otherPresent,
       setClientInitials,
       setClientPresent,
-      setCptCode,
-      setOtherCptCode,
       setEndTime,
       setOtherName,
       setOtherPresent,
@@ -51,6 +51,16 @@ const MeetingLogistics = () => {
       //setTelehealthConsent,
       setTelehealthPlatform,
       setchildPresent,
+
+
+
+      firstDateOfService,
+      setFirstDateOfService,
+      modalityPlanned,
+      setModalityPlanned,
+      meetingFrequency,
+      setMeetingFrequency,
+
     },
 
   }
@@ -82,6 +92,7 @@ const MeetingLogistics = () => {
     return hourDiff + minuteDiff
   }
 
+
   return (
     < Container >
       <Box>
@@ -93,18 +104,69 @@ const MeetingLogistics = () => {
         <TextField label="Client's Initials" value={clientInitials} onChange={(e) => setClientInitials(e.target.value)} style={{ width: 200 }} />
 
         <FormControl>
-          <FormLabel id="HIPAA-telehealth-platfrom-radio-buttons-group-label">HIPAA Compliant telehealth platform: </FormLabel>
+          <FormLabel id="participation-radio-buttons-group-label">
+            Did the person served and or their guardian participate in the development of this plan?
+          </FormLabel>
           <RadioGroup
-            aria-labelledby="HIPAA-telehealth-platfrom-radio-buttons-group-label"
-            defaultValue="Simple Practice"
-            name="HIPAA-telehealth-platfrom-radio-buttons-group"
-            onChange={(e) => setTelehealthPlatform(e.target.value)}
-            value={telehealthPlatform}
+            aria-labelledby="participation-radio-buttons-group-label"
+            defaultValue="Yes"
+            name="participation-radio-buttons-group"
           >
-            <FormControlLabel value="Simple Practice" control={<Radio />} label="Simple Practice" />
-            <FormControlLabel value="Google Meet" control={<Radio />} label="Google Meet" />
+            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
           </RadioGroup>
         </FormControl>
+
+
+        <Stack flexDirection="row" spacing={1} >
+          <FormLabel id="first-date-of-service-label">
+            First Date of Service
+          </FormLabel>
+          <DatePicker
+            aria-labelledby="first-date-of-service-label"
+            selected={firstDateOfService}
+            onChange={(date) => setFirstDateOfService(date || new Date())}
+          />
+        </Stack>
+
+
+
+        <FormControl>
+            <FormLabel id="modality-planned">Modality Planned</FormLabel>
+            <RadioGroup
+              aria-labelledby="modality-planned"
+              name="modality-planned"
+              onChange={(e) => setModalityPlanned(e.target.value)}
+              value={modalityPlanned}
+            >
+              {
+                modalities.map(modality =>
+                  <FormControlLabel value={modality} control={<Radio />} label={modality} key={modality} />
+                )
+              }
+            </RadioGroup>
+          </FormControl>
+
+
+
+          <FormControl>
+            <FormLabel id="modality-planned">Meeting Frequency</FormLabel>
+            <RadioGroup
+              aria-labelledby="modality-planned"
+              name="modality-planned"
+              onChange={(e) => setMeetingFrequency(e.target.value)}
+              value={meetingFrequency}
+            >
+              {
+                frequency.map(frequency =>
+                  <FormControlLabel value={frequency} control={<Radio />} label={frequency} key={frequency} />
+                )
+              }
+            </RadioGroup>
+          </FormControl>
+
+
+
+
 
 
         <FormControl>
@@ -145,32 +207,7 @@ const MeetingLogistics = () => {
           }
         </Stack>
 
-        <Stack flexDirection='row'>
-          <FormControl>
-            <Typography fontWeight={400} fontSize={16} color='rgba(0, 0, 0, 0.6)'>
-              CPT Code
-            </Typography>
-            <NativeSelect
-              inputProps={{
-                name: 'cpt-code',
-                id: 'cpt-code',
-              }}
-              fullWidth
-              style={{ width: 400 }}
-              onChange={(e) => setCptCode(e.target.value)}
-              value={cptCode}
-            >
-              {possibleCptCodes.map(code =>
-                <option value={code} key={code}>{code}</option>
-
-              )
-              }
-            </NativeSelect>
-          </FormControl>
-          {cptCode === 'Other' &&
-            <TextField label='Enter Other Cpt Code' value={otherCptCode} onChange={(e) => setOtherCptCode(e.target.value)} />
-          }
-        </Stack>
+ 
 
         <Box>
           <Typography fontWeight={400} fontSize={16} color='rgba(0, 0, 0, 0.6)'>Who was present at the meeting?</Typography>

@@ -1,17 +1,33 @@
 export const locationCodes = ["Home (Loc Code 10)", "Other (Loc Code 02)"]
 export type LocationCode = typeof locationCodes[number]
 
-export const possibleCptCodes = [
-    "90791 Diagnostic (50+ min)",
-    "90832 Individual (17-37 min)",
-    "90834 Individual (38-52 min)",
-    "90837 Individual (53+ min)",
-    "90847 Couples/Family with client present (45+ min)",
-    "90846 Family without client present (45+ min)",
-    "1111 Narrative Consulting (45 min)",
+export const modalities= [
+    "Individual",
+    "Couples/Relationship",
+    "Family",
+    "Group",
+]
+export type Modalities = typeof modalities[number]
+
+
+export const frequency= [
+    "Weekly",
+    "Every other week",
+    "Monthly",
     "Other",
 ]
-export type PossibleCptCode = typeof possibleCptCodes[number]
+export type Frequency = typeof frequency[number]
+
+
+
+
+
+
+
+
+
+
+
 
 
 export const cognitiveFunctioningStates = [
@@ -289,6 +305,11 @@ export const initialState = {
             siblingName: "",
             childName: "",
             otherName: "",
+
+
+            firstDateOfService: new Date(),
+            modalityPlanned: modalities[0],
+            meetingFrequency: frequency[0],
         },
         mentalStatusExam: {
             cognitiveFunctioning: "Oriented / Alert",

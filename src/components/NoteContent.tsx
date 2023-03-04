@@ -15,8 +15,6 @@ const NoteContent = () => {
             telehealthConsent,
             startTime,
             endTime,
-            cptCode,
-            otherCptCode,
             clientPresent,
             spouseName,
             spousePresent,
@@ -30,6 +28,12 @@ const NoteContent = () => {
             childPresent,
             otherName,
             otherPresent,
+
+
+
+            firstDateOfService,
+            modalityPlanned,
+            meetingFrequency,
         },
         mentalStatusExam: {
             cognitiveFunctioning,
@@ -88,25 +92,53 @@ const NoteContent = () => {
         return text.replace('[PROBLEM]', identifiedProblem).replace('[CLIENT]', clientInitials).replace('[REPLACEMENT]', replacementText)
     }
 
-    if (!startTime || !endTime) {
-        return (
-            <Box>
-                <Typography>Please fill out all necessary fields</Typography>
-                <Typography>Missing Fields</Typography>
-                <ul>
-                    {!startTime &&
-                        <li>Start Time in <a href="/narrative-treatment-plan/#/meeting-logistics">Meeting Logistics tab</a></li>
-                    }
-                    {!endTime &&
-                        <li>End Time in <a href="/narrative-treatment-plan/#/meeting-logistics">Meeting Logistics tab</a></li>
-                    }
-                </ul>
-            </Box>
-        )
-    }
+    // if (!startTime || !endTime) {
+    //     return (
+    //         <Box>
+    //             <Typography>Please fill out all necessary fields</Typography>
+    //             <Typography>Missing Fields</Typography>
+    //             <ul>
+    //                 {!startTime &&
+    //                     <li>Start Time in <a href="/narrative-treatment-plan/#/meeting-logistics">Meeting Logistics tab</a></li>
+    //                 }
+    //                 {!endTime &&
+    //                     <li>End Time in <a href="/narrative-treatment-plan/#/meeting-logistics">Meeting Logistics tab</a></li>
+    //                 }
+    //             </ul>
+    //         </Box>
+    //     )
+    // }
 
     return (
         <div>
+
+
+            <div>
+                <b>First Date of Service:</b>
+                {firstDateOfService.toDateString()}
+            </div>
+
+            <div>
+                {clientInitials} participated in the development of this plan.
+            </div>
+
+            <div>
+                <b>Modality Planned:</b>
+                {modalityPlanned}
+            </div>
+
+            <div>
+                <b>Meeting Frequency:</b>
+                {meetingFrequency}
+            </div>
+
+
+
+            <div>
+                <b>First Date of Service: </b>
+                {telehealthPlatform}
+            </div>
+
             <div>
                 <b>HIPAA Compliant telehealth platform: </b>
                 {telehealthPlatform}
@@ -128,10 +160,7 @@ const NoteContent = () => {
                 <b>End Time: </b>
                 {endTime}
             </div>
-            <div>
-                <b>CPT Code: </b>
-                {cptCode === 'Other' ? otherCptCode : cptCode}
-            </div>
+
             <div>
                 <b>Persons Present: </b>
                 <ul>
@@ -254,17 +283,17 @@ const NoteContent = () => {
                             ptsdSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
                         }
                         {(otherSymptoms.length > 1 || otherSymptoms[0].length > 0) &&
-                           ( (otherSymptoms && groupSymptomsTogether) ? (
-                            <li>Other Symptoms<ul>
-                                {
-                                    otherSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
-                                }
-                            </ul></li>
-                        )
-                            :
-                            otherSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
+                            ((otherSymptoms && groupSymptomsTogether) ? (
+                                <li>Other Symptoms<ul>
+                                    {
+                                        otherSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
+                                    }
+                                </ul></li>
+                            )
+                                :
+                                otherSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
 
-                        )}
+                            )}
                     </ul>
                 </div>
             }

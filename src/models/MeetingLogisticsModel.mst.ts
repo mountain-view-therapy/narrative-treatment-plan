@@ -1,7 +1,7 @@
 import { Instance, types } from "mobx-state-tree"
 import {
-    PossibleCptCode,
-    possibleCptCodes,
+    modalities, Modalities,
+    frequency, Frequency,
 } from "../state/constants"
 
 const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
@@ -12,7 +12,6 @@ const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
     otherAddress: types.string,
     startTime: types.string,
     endTime: types.string,
-    cptCode: types.enumeration('cptCode', possibleCptCodes),
     otherCptCode: types.string,
     clientPresent: types.boolean,
     spousePresent: types.boolean,
@@ -27,8 +26,28 @@ const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
     siblingName: types.optional(types.string, ""),
     childName: types.optional(types.string, ""),
     otherName: types.optional(types.string, ""),
+
+
+
+    firstDateOfService: types.Date,
+    modalityPlanned: types.enumeration('modalityPlanned', modalities),
+    meetingFrequency: types.enumeration('frequency', frequency),
+
+
 }).actions((self) => {
     return {
+        setModalityPlanned(modality: Modalities): void {
+            self.modalityPlanned = modality
+        },
+        setMeetingFrequency(frequency: Frequency): void {
+            self.meetingFrequency = frequency
+        },
+
+
+
+
+
+
         setClientInitials(intitals: string): void {
             self.clientInitials = intitals
         },
@@ -50,9 +69,7 @@ const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
         setEndTime(endTime: string): void {
             self.endTime = endTime
         },
-        setCptCode(code: PossibleCptCode): void {
-            self.cptCode = code
-        },
+
         setOtherCptCode(code: string): void {
             self.otherCptCode = code
         },
@@ -96,6 +113,12 @@ const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
         setOtherName(name: string): void {
             self.otherName = name
         },
+
+
+        setFirstDateOfService(date: Date): void {
+            self.firstDateOfService = date
+        }
+
     }
 })
 
