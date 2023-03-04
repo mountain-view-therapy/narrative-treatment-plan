@@ -2,7 +2,7 @@ import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, NativeSe
 import { Box, Container, Stack } from '@mui/system';
 import { observer } from 'mobx-react-lite';
 import { getState } from '../../state/provider';
-import { frequency, modalities } from '../../state/constants';
+import { frequency, length, modalities } from '../../state/constants';
 import TimePicker from '../../components/TimePicker';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -60,6 +60,8 @@ const MeetingLogistics = () => {
       setModalityPlanned,
       meetingFrequency,
       setMeetingFrequency,
+      treatmentLength,
+      setTreatmentLength
 
     },
 
@@ -149,10 +151,10 @@ const MeetingLogistics = () => {
 
 
           <FormControl>
-            <FormLabel id="modality-planned">Meeting Frequency</FormLabel>
+            <FormLabel id="meeting-frequency">Meeting Frequency</FormLabel>
             <RadioGroup
-              aria-labelledby="modality-planned"
-              name="modality-planned"
+              aria-labelledby="meeting-frequency"
+              name="meeting-frequency"
               onChange={(e) => setMeetingFrequency(e.target.value)}
               value={meetingFrequency}
             >
@@ -165,7 +167,21 @@ const MeetingLogistics = () => {
           </FormControl>
 
 
-
+          <FormControl>
+            <FormLabel id="treatment-length">Treatment Length</FormLabel>
+            <RadioGroup
+              aria-labelledby="treatment-length"
+              name="treatment-length"
+              onChange={(e) => setTreatmentLength(e.target.value)}
+              value={treatmentLength}
+            >
+              {
+                length.map(l =>
+                  <FormControlLabel value={l} control={<Radio />} label={l} key={l} />
+                )
+              }
+            </RadioGroup>
+          </FormControl>
 
 
 

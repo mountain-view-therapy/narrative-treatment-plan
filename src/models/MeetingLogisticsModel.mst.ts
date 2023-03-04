@@ -1,7 +1,7 @@
 import { Instance, types } from "mobx-state-tree"
 import {
     modalities, Modalities,
-    frequency, Frequency,
+    frequency, Frequency, length, Length,
 } from "../state/constants"
 
 const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
@@ -32,6 +32,7 @@ const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
     firstDateOfService: types.Date,
     modalityPlanned: types.enumeration('modalityPlanned', modalities),
     meetingFrequency: types.enumeration('frequency', frequency),
+    treatmentLength: types.enumeration('length', length),
 
 
 }).actions((self) => {
@@ -42,7 +43,9 @@ const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
         setMeetingFrequency(frequency: Frequency): void {
             self.meetingFrequency = frequency
         },
-
+        setTreatmentLength(length: Length): void {
+        self.treatmentLength = length
+        },
 
 
 

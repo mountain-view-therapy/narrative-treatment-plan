@@ -19,6 +19,14 @@ export const frequency= [
 export type Frequency = typeof frequency[number]
 
 
+export const length= [
+    "3 Months",
+    "6 Months",
+    "12 Month",
+    "Other",
+]
+export type Length = typeof length[number]
+
 
 
 
@@ -310,6 +318,7 @@ export const initialState = {
             firstDateOfService: new Date(),
             modalityPlanned: modalities[0],
             meetingFrequency: frequency[0],
+            treatmentLength: length[0],
         },
         mentalStatusExam: {
             cognitiveFunctioning: "Oriented / Alert",

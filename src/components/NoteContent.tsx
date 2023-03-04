@@ -34,6 +34,7 @@ const NoteContent = () => {
             firstDateOfService,
             modalityPlanned,
             meetingFrequency,
+            treatmentLength
         },
         mentalStatusExam: {
             cognitiveFunctioning,
@@ -132,47 +133,23 @@ const NoteContent = () => {
                 {meetingFrequency}
             </div>
 
-
-
             <div>
-                <b>First Date of Service: </b>
-                {telehealthPlatform}
+                <b>Estimated Length of Treatment:</b>
+                {treatmentLength}
             </div>
 
-            <div>
-                <b>HIPAA Compliant telehealth platform: </b>
-                {telehealthPlatform}
-            </div>
-            <div>
-                <b>Is person-served appropriate for telehealth? </b>
-                {telehealthAppropriate}
-            </div>
-            <div>
-                <b>Did you receive consent for telehealth meetings? </b>
-                {telehealthConsent}
-            </div>
 
-            <div>
-                <b>Start Time: </b>
-                {startTime}
-            </div>
-            <div>
-                <b>End Time: </b>
-                {endTime}
-            </div>
 
-            <div>
-                <b>Persons Present: </b>
-                <ul>
-                    {clientPresent && <li>Client</li>}
-                    {spousePresent && <li>Spouse: {spouseName}</li>}
-                    {partnerPresent && <li>Partner: {partnerName}</li>}
-                    {parentPresent && <li>Parent: {parentName}</li>}
-                    {siblingPresent && <li>Silbling: {siblingName}</li>}
-                    {childPresent && <li>Child: {childName}</li>}
-                    {otherPresent && <li>Other: {otherName}</li>}
-                </ul>
-            </div>
+
+
+
+
+
+
+
+
+
+
 
             <div><b>Mental Status Exam</b>
                 <ul>
