@@ -97,7 +97,6 @@ export const riskLevels = [
 ]
 export type RiskLevels = typeof riskLevels[number]
 
-
 export const possibleAnxietySymptoms = [
     "excessive worry that is difficult to control",
     "constantly feeling on edge",
