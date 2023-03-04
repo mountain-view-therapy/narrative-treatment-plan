@@ -27,75 +27,14 @@ export const length= [
 ]
 export type Length = typeof length[number]
 
-
-
-
-
-
-
-
-
-
-
-
-export const cognitiveFunctioningStates = [
-    "Oriented / Alert",
-    "Disorganized",
-    "Tangential",
-    "Preoccupied",
-    "Circumstantial",
-    "Not Assessed",
+export const diagnosis= [
+    "F41.1 	Generalized Anxiety Disorder",
+    "F33.1 	Major Depressive Disorder, recurrent, moderate",
+    "F43.10 Posttraumatic Stress Disorder",
+    "Other",
 ]
-export type CognitiveFunctioningState = typeof cognitiveFunctioningStates[number]
+export type Diagnosis = typeof diagnosis[number]
 
-
-export const affectStates = [
-    "Appropriate",
-    "Inappropriate",
-    "Labile",
-    "Constricted",
-    "Blunted",
-    "Flat",
-    "Not Assessed",
-]
-export type AffectStates = typeof affectStates[number]
-
-export const moodStates = [
-    "Euthymic",
-    "Depressed",
-    "Dysphoric",
-    "Anxious",
-    "Angry",
-    "Euphoric",
-    "Not Assessed"
-]
-export type MoodStates = typeof moodStates[number]
-
-
-export const interpersonalStates = [
-    "Interactive",
-    "Intermittently Interactive",
-    "Guarded",
-    "Withdrawn",
-    "Hostile",
-    "Not Assessed",
-]
-export type InterpersonalStates = typeof interpersonalStates[number]
-
-export const functionalStatusStates = [
-    "Intact",
-    "Impaired",
-    "Variably Impaired",
-    "Not Assessed",
-]
-export type FunctionalStatusStates = typeof interpersonalStates[number]
-
-export const riskLevels = [
-    "Low",
-    "Medium",
-    "High",
-]
-export type RiskLevels = typeof riskLevels[number]
 
 export const possibleAnxietySymptoms = [
     "excessive worry that is difficult to control",
@@ -145,6 +84,7 @@ export const possiblePTSDSymptoms = [
 ]
 export type PossiblePTSDSymptom = typeof possiblePTSDSymptoms[number]
 
+
 export const possibleSelfCareSymptoms = [
     " is getting inadequate sleep, only 5 hours per night",
     " is only eating 1 meal per day",
@@ -186,34 +126,19 @@ export const possibleCommunitySymptoms = [
 ]
 export type PossibleCommunitySymptom = typeof possibleCommunitySymptoms[number]
 
-export const possibleInterventions = [
-    { text: "Use and promote externalized language to give [CLIENT] space to take a position on their relationship with [PROBLEM]." },
-    { text: "Use deconstruction questions to help [CLIENT] identify an experience near name for the problem." },
-    { text: "Use deconstruction questions to help [CLIENT] identify the effects of [PROBLEM]."},
-    { text: "Use deconstruction questions to help [CLIENT] identify the tactics used by [PROBLEM]."},
-    { text: "Use deconstruction questions to help [CLIENT] evaluate their stance on the problems' effects in their life."},
-    { text: "Use deconstruction questions to help [CLIENT] explore the history of their relationship with [PROBLEM]."},
-    { text: "Invite [CLIENT] to take a stance on their relationship with [PROBLEM]. Use deconstruction questions to help them richly describe their values/ preferences that justify their stance."},
-    { text: "Use deconstruction questions to help  [CLIENT] identify cultural discourse and societal norms that may support the  [PROBLEM]."},
-    { text: "Use Narrative practice of double listening to identify unique outcomes,  situations, events, and circumstances free from [PROBLEM]’s influence."},
-    { text: "Use Narrative practice of Re-Authoring to invite [CLIENT] into preferred story development."},
-    { text: "Use Narrative practice of Re-Authoring to help [CLIENT] develop a name for their preferred story."},
-    { text: "Use Narrative practice of Re-Authoring to help [CLIENT] identify actions that support their preferred story."},
-    { text: "Use Narrative practice of Re-Authoring to help  [CLIENT] identify situations that support their preferred story."},
-    { text: "Use Narrative practice of Re-Authoring to help  [CLIENT] identified cultural contexts that support their preferred story."},
-    { text: "Use Narrative practice of Re-Authoring to invite [CLIENT]  to making meaning of their life through the lens of their preferred story"},
-    { text: "Use Narrative practice of Re-membering to help [CLIENT] to identify people that support their preferred story."},
-    { text: "Use Narrative practice of Re-membering Conversations to invoke the presence/memory of someone to thicken alternative/preferred story."},
-    { text: "Refer [CLIENT] to physician for medical evaluation. " },
-    { text: "Refer to resources to learn meditation/mindfulness. Incorporated the use of these skills in alternative/preferred story development." },
-    {
-        text: "Work with [CLIENT] to develop a concrete preferred action plan in relation to [REPLACEMENT].",
-        prompt: "[name activities of daily living ex. eating, sleeping, exercise]"
+export const possibleGoals = [
+    { 
+        text: "Change the relationship with [PROBLEM] to reduce the frequency, intensity and duration of its effects so that [REPLACEMENT].",
+        prompt: "[specify how functioning will be no longer/less impaired]"
+    },
+    { 
+        text: "[Reduce/Increase] frequency of [REPLACEMENT] in relation to [REPLACEMENT]",
+        prompt: "[specific symptom of diagnosis]",
     },
 ]
 
 export const possibleProgressions = [
-    {text: "[CLIENT] consistently speaks about [PROBLEM] in externalized language during therapy meetings.",},    
+        {text: "[CLIENT] consistently speaks about [PROBLEM] in externalized language during therapy meetings."},    
     {
         text: "[CLIENT] identified and verbalized an experience near name for the problem, [REPLACEMENT].",
         prompt: "[state name]",
@@ -276,6 +201,36 @@ export const possibleProgressions = [
     },
     
 ]
+
+
+export const possibleInterventions = [
+    { text: "Use and promote externalized language to give [CLIENT] space to take a position on their relationship with [PROBLEM]." },
+    { text: "Use deconstruction questions to help [CLIENT] identify an experience near name for the problem." },
+    { text: "Use deconstruction questions to help [CLIENT] identify the effects of [PROBLEM]."},
+    { text: "Use deconstruction questions to help [CLIENT] identify the tactics used by [PROBLEM]."},
+    { text: "Use deconstruction questions to help [CLIENT] evaluate their stance on the problems' effects in their life."},
+    { text: "Use deconstruction questions to help [CLIENT] explore the history of their relationship with [PROBLEM]."},
+    { text: "Invite [CLIENT] to take a stance on their relationship with [PROBLEM]. Use deconstruction questions to help them richly describe their values/ preferences that justify their stance."},
+    { text: "Use deconstruction questions to help  [CLIENT] identify cultural discourse and societal norms that may support the  [PROBLEM]."},
+    { text: "Use Narrative practice of double listening to identify unique outcomes,  situations, events, and circumstances free from [PROBLEM]’s influence."},
+    { text: "Use Narrative practice of Re-Authoring to invite [CLIENT] into preferred story development."},
+    { text: "Use Narrative practice of Re-Authoring to help [CLIENT] develop a name for their preferred story."},
+    { text: "Use Narrative practice of Re-Authoring to help [CLIENT] identify actions that support their preferred story."},
+    { text: "Use Narrative practice of Re-Authoring to help  [CLIENT] identify situations that support their preferred story."},
+    { text: "Use Narrative practice of Re-Authoring to help  [CLIENT] identified cultural contexts that support their preferred story."},
+    { text: "Use Narrative practice of Re-Authoring to invite [CLIENT]  to making meaning of their life through the lens of their preferred story"},
+    { text: "Use Narrative practice of Re-membering to help [CLIENT] to identify people that support their preferred story."},
+    { text: "Use Narrative practice of Re-membering Conversations to invoke the presence/memory of someone to thicken alternative/preferred story."},
+    { text: "Refer [CLIENT] to physician for medical evaluation. " },
+    { text: "Refer to resources to learn meditation/mindfulness. Incorporated the use of these skills in alternative/preferred story development." },
+    {
+        text: "Work with [CLIENT] to develop a concrete preferred action plan in relation to [REPLACEMENT].",
+        prompt: "[name activities of daily living ex. eating, sleeping, exercise]"
+    },
+]
+
+
+
 
 
 export const possibleRecommendationsForMovingForward = [
