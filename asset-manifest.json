@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/narrative-treatment-plan/static/css/main.e6c13ad2.css",
+    "main.js": "/narrative-treatment-plan/static/js/main.0f155ca3.js",
+    "static/js/787.05491f81.chunk.js": "/narrative-treatment-plan/static/js/787.05491f81.chunk.js",
+    "service-worker.js": "/narrative-treatment-plan/service-worker.js",
+    "index.html": "/narrative-treatment-plan/index.html",
+    "main.e6c13ad2.css.map": "/narrative-treatment-plan/static/css/main.e6c13ad2.css.map",
+    "main.0f155ca3.js.map": "/narrative-treatment-plan/static/js/main.0f155ca3.js.map",
+    "787.05491f81.chunk.js.map": "/narrative-treatment-plan/static/js/787.05491f81.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.0f155ca3.js"
+  ]
+}
