@@ -6,26 +6,7 @@ import {
 
 const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
     clientInitials: types.string,
-    telehealthPlatform: types.enumeration('telehealthPlatform', ['Simple Practice', 'Google Meet']),
-    telehealthAppropriate: types.enumeration('telehealthAppropriate', ['Yes', 'No']),
-    telehealthConsent: types.enumeration('telehealthConsent', ['Yes', 'No']),
-    otherAddress: types.string,
-    startTime: types.string,
-    endTime: types.string,
-    otherCptCode: types.string,
-    clientPresent: types.boolean,
-    spousePresent: types.boolean,
-    partnerPresent: types.boolean,
-    parentPresent: types.boolean,
-    siblingPresent: types.boolean,
-    childPresent: types.boolean,
-    otherPresent: types.boolean,
-    spouseName: types.optional(types.string, ""),
-    partnerName: types.optional(types.string, ""),
-    parentName: types.optional(types.string, ""),
-    siblingName: types.optional(types.string, ""),
-    childName: types.optional(types.string, ""),
-    otherName: types.optional(types.string, ""),
+ 
 
 
 

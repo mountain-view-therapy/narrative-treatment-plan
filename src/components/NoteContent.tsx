@@ -3,7 +3,7 @@ import { getState } from "../state/provider"
 
 const NoteContent = () => {
 
-    const { meetingInformation: {
+    const { treatmentPlan: {
         meetingLogistics: {
             clientInitials,
             firstDateOfService,
@@ -13,55 +13,11 @@ const NoteContent = () => {
             otherTreatmentLength,
             otherMeetingFrequency,
         },
-        mentalStatusExam: {
-            cognitiveFunctioning,
-            affect,
-            mood,
-            interpersonal,
-            functionalStatus,
-            noRisk,
-            dangerToSelf,
-            dangerToOthers,
-            otherRisk,
-            dangerToSelfRisk,
-            dangerToOthersRisk,
-            dangerToSelfEvidence,
-            dangerToOthersEvidence,
-            dangerToSelfPlan,
-            dangerToOthersPlan,
-            otherRiskInformation,
+        diagnostics: {
+            diagnoses
         },
-        problems,
-        symptoms: {
-            anxietySymptoms,
-            depressionSymptoms,
-            ptsdSymptoms,
-            otherSymptoms,
-            groupSymptomsTogether,
-            selfCareAffected,
-            selfCareSymptoms,
-            otherSelfCareSymptoms,
-            occupationAffected,
-            occupationSymptoms,
-            otherOccupationSymptoms,
-            academicAffected,
-            academicSymptoms,
-            otherAcademicSymptoms,
-            interpersonalAffected,
-            interpersonalSymptoms,
-            otherInterpersonalSymptoms,
-            communitylAffected,
-            communitySymptoms,
-            otherCommunitySymptoms,
-        },
-        interventions,
-        otherInterventions,
-        progressions,
-        otherProgressions,
         identifiedProblem,
-        recommendationForMovingForward,
-        frequencyChangeExplanation,
-        nextMeeting,
+
     } } = getState()
 
 
@@ -111,7 +67,24 @@ const NoteContent = () => {
 
             <div>
                 <b>Estimated Length of Treatment:</b>
-                {treatmentLength === 'Other' ? otherTreatmentLength :  treatmentLength}
+                {treatmentLength === 'Other' ? otherTreatmentLength : treatmentLength}
+            </div>
+
+            <div>
+                <b>Diagnoses</b>
+                {diagnoses.map(diagnosis => <>
+                    <p>{diagnosis.otherDiagnosisName || diagnosis.diagnosisName}</p>
+                    <ul>
+                        {diagnosis.symptoms.map(symptom =>
+                            <li>
+                                {symptom}
+                            </li>
+                        )
+                        }
+                        {diagnosis.otherSymptoms && <li>{diagnosis.otherSymptoms}</li>}
+                    </ul>
+                </>
+                )}
             </div>
 
 
@@ -124,9 +97,7 @@ const NoteContent = () => {
 
 
 
-
-
-
+            {/* 
             <div><b>Mental Status Exam</b>
                 <ul>
                     {cognitiveFunctioning &&
@@ -311,7 +282,7 @@ const NoteContent = () => {
             {nextMeeting &&
                 <p><b>Next meeting :</b> {new Date(nextMeeting).toLocaleString("en-US", { timeStyle: "full", dateStyle: "full" })}</p>
             }
-            <pre style={{ width: 504, whiteSpace: "pre-wrap", overflowWrap: "break-word", fontSize: 16, fontWeight: 400, fontFamily: 'sans-serif' }}>{frequencyChangeExplanation}</pre>
+            <pre style={{ width: 504, whiteSpace: "pre-wrap", overflowWrap: "break-word", fontSize: 16, fontWeight: 400, fontFamily: 'sans-serif' }}>{frequencyChangeExplanation}</pre> */}
 
         </div >
     )

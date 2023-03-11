@@ -2,14 +2,9 @@ import { AppBar, Box, Toolbar, Stack, Tab, Tabs } from "@mui/material";
 import { Container } from "@mui/system";
 import { useState } from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import Interventions from "./sections/interventions/Interventions";
 import MeetingLogistics from "./sections/meetingLogistics/MeetingLogistics";
-import MentalStatusExam from "./sections/mentalStatusExam/MentalStatusExam";
-import NextMeeting from "./sections/nextMeeting/NextMeeting";
 import Note from "./sections/note/Note";
-import Problems from "./sections/problems/Problems";
-import Progress from "./sections/progress/Progress";
-import Symptoms from "./sections/symptoms/Symptoms";
+import Diagnostic from "./sections/diagnostic/Diagnostic";
 
 function App() {
   return (
@@ -17,12 +12,7 @@ function App() {
       <Route path='/' element={<Layout />}>
         <Route index element={<MeetingLogistics />} />
         <Route path="meeting-logistics" element={<MeetingLogistics />} />
-        <Route path="mental-status-exam" element={<MentalStatusExam />} />
-        <Route path="problems" element={<Problems />} />
-        <Route path="symptoms" element={<Symptoms />} />
-        <Route path="interventions" element={<Interventions />} />
-        <Route path="progress" element={<Progress />} />
-        <Route path="next-meeting" element={<NextMeeting />} />
+        <Route path="diagnostic" element={<Diagnostic />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
@@ -61,6 +51,15 @@ const Layout = () => {
                   />
 
                   <Tab
+                    value='diagnostic'
+                    label="Diagnostic"
+                    component={Link}
+                    to='diagnostic'
+                    style={{ fontSize: '12px', color: 'white' }}
+
+                  />
+
+                  <Tab
                     value='mental-status-exam'
                     label="MSE/Risk"
                     component={Link}
@@ -74,14 +73,7 @@ const Layout = () => {
                     to='problems'
                     style={{ fontSize: '12px', color: 'white' }}
                   />
-                  <Tab
-                    value='symptoms'
-                    label="Symptoms"
-                    component={Link}
-                    to='symptoms'
-                    style={{ fontSize: '12px', color: 'white' }}
 
-                  />
                   <Tab
                     value='interventions'
                     label="Interventions"

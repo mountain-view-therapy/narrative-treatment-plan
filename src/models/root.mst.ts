@@ -1,10 +1,10 @@
 import { Instance, types } from 'mobx-state-tree';
 import { initialState } from '../state/constants';
-import MeetingInformationModel from './MeetingInformationModel.mst';
+import TreatmentPlanModel from './TreatmentPlanModel.mst';
 
 const RootModel = types
   .model('RootModel', {
-    meetingInformation: MeetingInformationModel,
+    treatmentPlan: TreatmentPlanModel,
     currentTab: types.string,
     hydrated: false,
   }).actions((self) => {
@@ -13,7 +13,7 @@ const RootModel = types
         self.currentTab = tab
       },
       resetNoteState(): void {
-        self.meetingInformation = MeetingInformationModel.create(initialState.meetingInformation)
+        self.treatmentPlan = TreatmentPlanModel.create(initialState.treatmentPlan)
       },
     }
   })

@@ -10,12 +10,12 @@ const turndownService = new TurndownService()
 
 const CopyToClipboardButton = () => {
     const [open, setOpen] = useState(false)
-    const { meetingInformation: {
-        meetingLogistics: {
-            startTime,
-            endTime,
-        }
-    } } = getState();
+    // const { meetingInformation: {
+    //     meetingLogistics: {
+    //         startTime,
+    //         endTime,
+    //     }
+    // } } = getState();
     const handleClick = () => {
         setOpen(true)
         const html = renderToString(<NoteContent />)
@@ -28,7 +28,7 @@ const CopyToClipboardButton = () => {
             <Button
                 variant='contained'
                 onClick={handleClick}
-                disabled={!startTime || !endTime}
+                // disabled={!startTime || !endTime}
                 >
                 Copy Note
             </Button>

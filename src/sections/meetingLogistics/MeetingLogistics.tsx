@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 const MeetingLogistics = () => {
-  const { meetingInformation: {
+  const { treatmentPlan: {
     meetingLogistics: {
       clientInitials,
       setClientInitials,
