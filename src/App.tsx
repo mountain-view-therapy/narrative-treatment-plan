@@ -5,6 +5,8 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import MeetingLogistics from "./sections/meetingLogistics/MeetingLogistics";
 import Note from "./sections/note/Note";
 import Diagnostic from "./sections/diagnostic/Diagnostic";
+import Functioning from "./sections/functioning/Functioning";
+import Interventions from "./sections/interventions/Interventions";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route index element={<MeetingLogistics />} />
         <Route path="meeting-logistics" element={<MeetingLogistics />} />
         <Route path="diagnostic" element={<Diagnostic />} />
+        <Route path="effects-on-functioning" element={<Functioning />} />
+        <Route path="interventions" element={<Interventions />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
@@ -60,17 +64,17 @@ const Layout = () => {
                   />
 
                   <Tab
-                    value='mental-status-exam'
-                    label="MSE/Risk"
+                    value='effects-on-functioning'
+                    label="Effect on Functioning"
                     component={Link}
-                    to='mental-status-exam'
+                    to='effects-on-functioning'
                     style={{ fontSize: '12px', color: 'white' }}
                   />
                   <Tab
-                    value='problems'
-                    label="Problem(s)"
+                    value='goals'
+                    label="Goals"
                     component={Link}
-                    to='problems'
+                    to='goals'
                     style={{ fontSize: '12px', color: 'white' }}
                   />
 
@@ -79,22 +83,6 @@ const Layout = () => {
                     label="Interventions"
                     component={Link}
                     to='interventions'
-                    style={{ fontSize: '12px', color: 'white' }}
-
-                  />
-                  <Tab
-                    value='progress'
-                    label="Progress"
-                    component={Link}
-                    to='progress'
-                    style={{ fontSize: '12px', color: 'white' }}
-
-                  />
-                  <Tab
-                    value='next-meeting'
-                    label="Next Meeting"
-                    component={Link}
-                    to='next-meeting'
                     style={{ fontSize: '12px', color: 'white' }}
 
                   />

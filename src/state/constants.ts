@@ -79,47 +79,56 @@ export const possibleSymptoms = {
         "feelings of hopelessness",
         "intense distress when exposed to reminders of the traumatic event",
     ],
-    // "selfCare": [
-    //     " is getting inadequate sleep, only 5 hours per night",
-    //     " is only eating 1 meal per day",
-    //     " is only showering twice a week when they\"d prefer to shower daily",
-    // ],
-    // occupation: [
-    //     " is getting in frequent arguments with coworkers",
-    //     " is frequently late to work",
-    //     " frequently misses work",
-    //     " has received a written warning at work",
-    //     " is at risk of losing job",
-    // ],
-    // "academic": [
-    //     " frequently arrives late to school",
-    //     " frequently misses school",
-    //     " lack of school attendance is negatively affecting grades",
-    //     " unable to keep up with coursework",
-    //     " is engaged in fights at school every month",
-    // ],
-    // "interpersonal": [
-    //     " is getting in frequent arguments with partner",
-    //     " has frequent arguments with family members",
-    //     " has frequent arguments with friends",
-    //     " is unable to partake in family obligations",
-    // ],
-    // "community": [
-    //     " has been unable to attend community functions",
-    //     " has been unable to fulfill community obligations",
-    // ],
+}
+export const possibleEffectsOnFunctions = {
+    "selfCare": [
+        "[CLIENT] is getting inadequate sleep, only 5 hours per night",
+        "[CLIENT] is only eating 1 meal per day",
+        "[CLIENT] is only showering twice a week when they'd prefer to shower daily",
+    ],
+    "occupation": [
+        "[CLIENT] is getting in frequent arguments with coworkers",
+        "[CLIENT] is frequently late to work",
+        "[CLIENT] frequently misses work",
+        "[CLIENT] has received a written warning at work",
+        "[CLIENT] is at risk of losing job",
+    ],
+    "academic": [
+        "[CLIENT] frequently arrives late to school",
+        "[CLIENT] frequently misses school",
+        "[CLIENT] lack of school attendance is negatively affecting grades",
+        "[CLIENT] unable to keep up with coursework",
+        "[CLIENT] is engaged in fights at school every month",
+    ],
+    "interpersonal": [
+        "[CLIENT] is getting in frequent arguments with partner",
+        "[CLIENT] has frequent arguments with family members",
+        "[CLIENT] has frequent arguments with friends",
+        "[CLIENT] is unable to partake in family obligations",
+    ],
+    "community": [
+        "[CLIENT] has been unable to attend community functions",
+        "[CLIENT] has been unable to fulfill community obligations",
+    ],
 }
 
 
 export type PossibleAnxietySymptom = typeof possibleSymptoms["F41.1 Generalized Anxiety Disorder"][number]
 export type PossibleDepressionSymptom = typeof possibleSymptoms["F33.1 Major Depressive Disorder, recurrent, moderate"][number]
 export type PossiblePTSDSymptom = typeof possibleSymptoms["F43.10 Posttraumatic Stress Disorder"][number]
-// export type PossibleSelfCareSymptom = typeof possibleSymptoms["selfCare"][number]
-// export type PossibleOccupationSymptom = typeof possibleSymptoms["occupation"][number]
-// export type PossibleAcademicSymptom = typeof possibleSymptoms["academic"][number]
-// export type PossibleInterpersonalSymptom = typeof possibleSymptoms["interpersonal"][number]
-// export type PossibleCommunitySymptom = typeof possibleSymptoms["community"][number]
 export type PossibleSymptom = PossibleAnxietySymptom | PossibleDepressionSymptom | PossiblePTSDSymptom
+
+
+export type PossibleEffectOnSelfCare = typeof possibleEffectsOnFunctions["selfCare"][number]
+export type PossibleEffectOnOccupation = typeof possibleEffectsOnFunctions["occupation"][number]
+export type PossibleEffectOnAcademic = typeof possibleEffectsOnFunctions["academic"][number]
+export type PossibleEffectOnInterpersonal = typeof possibleEffectsOnFunctions["interpersonal"][number]
+export type PossibleEffectOnCommunity = typeof possibleEffectsOnFunctions["community"][number]
+export type PossibleEffectsOnFunctions = PossibleEffectOnSelfCare
+    | PossibleEffectOnOccupation
+    | PossibleEffectOnAcademic
+    | PossibleEffectOnInterpersonal
+    | PossibleEffectOnCommunity
 
 export const possibleGoals = [
     {
@@ -272,7 +281,23 @@ export const initialState = {
             communitySymptoms: [],
             otherCommunitySymptoms: "",
         },
-
+        functioning: {
+            selfCareAffected: false,
+            selfCareSymptoms: [],
+            otherSelfCareSymptoms: "",
+            occupationAffected: false,
+            occupationSymptoms: [],
+            otherOccupationSymptoms: "",
+            academicAffected: false,
+            academicSymptoms: [],
+            otherAcademicSymptoms: "",
+            interpersonalAffected: false,
+            interpersonalSymptoms: [],
+            otherInterpersonalSymptoms: "",
+            communitylAffected: false,
+            communitySymptoms: [],
+            otherCommunitySymptoms: "",
+        },
 
         problems: "",
         identifiedProblem: "",

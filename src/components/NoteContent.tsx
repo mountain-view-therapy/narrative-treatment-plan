@@ -16,13 +16,35 @@ const NoteContent = () => {
         diagnostics: {
             diagnoses
         },
+        functioning: {
+            selfCareAffected,
+            selfCareSymptoms,
+            otherSelfCareSymptoms,
+            occupationAffected,
+            occupationSymptoms,
+            otherOccupationSymptoms,
+            academicAffected,
+            academicSymptoms,
+            otherAcademicSymptoms,
+            interpersonalAffected,
+            interpersonalSymptoms,
+            otherInterpersonalSymptoms,
+            communitylAffected,
+            communitySymptoms,
+            otherCommunitySymptoms,
+        },
         identifiedProblem,
+        interventions,
+        otherInterventions,
 
     } } = getState()
 
 
     const replaceText = (text: string, replacementText: string) => {
         return text.replace('[PROBLEM]', identifiedProblem).replace('[CLIENT]', clientInitials).replace('[REPLACEMENT]', replacementText)
+    }
+    const replaceClientsIntitals = (text: string) => {
+        return text.replace('[CLIENT]', clientInitials)
     }
 
     // if (!startTime || !endTime) {
@@ -86,9 +108,59 @@ const NoteContent = () => {
                 </>
                 )}
             </div>
+            <div>
+                {(selfCareAffected || occupationAffected || academicAffected || interpersonalAffected || communitylAffected) &&
+                    <b>Effects on Functioning</b>
+                }
+                {selfCareAffected &&
+                    <p>
+                        These symptoms affect {clientInitials || <b>Client's Initials</b>}'s self care.
+                        {selfCareSymptoms.map(s => <span key={s}> {replaceClientsIntitals(s)}. </span>)}
+                        <span> {otherSelfCareSymptoms} </span>
+                    </p>
+                }
+                {occupationAffected &&
+                    <p>
+                        These symptoms affect {clientInitials || <b>Client's Initials</b>}'s occupational functioning.
+                        {occupationSymptoms.map(s => <span key={s}> {replaceClientsIntitals(s)}. </span>)}
+                        <span> {otherOccupationSymptoms} </span>
+                    </p>
+                }
+                {academicAffected &&
+                    <p>
+                        These symptoms affect {clientInitials || <b>Client's Initials</b>}'s academic functioning.
+                        {academicSymptoms.map(s => <span key={s}> {replaceClientsIntitals(s)}. </span>)}
+                        <span> {otherAcademicSymptoms} </span>
+                    </p>
+                }
+                {interpersonalAffected &&
+                    <p>
+                        These symptoms affect {clientInitials || <b>Client's Initials</b>}'s interpersonal functioning.
+                        {interpersonalSymptoms.map(s => <span key={s}> {replaceClientsIntitals(s)}. </span>)}
+                        <span> {otherInterpersonalSymptoms} </span>
+                    </p>
+                }
+                {communitylAffected &&
+                    <p>
+                        These symptoms affect {clientInitials || <b>Client's Initials</b>}'s community functioning.
+                        {communitySymptoms.map(s => <span key={s}> {replaceClientsIntitals(s)}. </span>)}
+                        <span> {otherCommunitySymptoms} </span>
+                    </p>
+                }
+            </div>
 
+            {(interventions.length > 0 || otherInterventions.length > 0) &&
+                <b>Interventions:</b>
+            }
+            {interventions.filter(i => i.checked).map(intervention => (
+                <p key={intervention.text}>{replaceText(intervention.text, intervention.replacementText)}</p>)
+            )
+            }
 
-
+            {otherInterventions.map(intervention => (
+                <p key={intervention}>{intervention}</p>)
+            )
+            }
 
 
 
