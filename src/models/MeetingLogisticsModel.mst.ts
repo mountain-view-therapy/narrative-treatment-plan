@@ -6,10 +6,6 @@ import {
 
 const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
     clientInitials: types.string,
- 
-
-
-
     firstDateOfService: types.Date,
     modalityPlanned: types.enumeration('modalityPlanned', modalities),
     meetingFrequency: types.enumeration('frequency', frequency),

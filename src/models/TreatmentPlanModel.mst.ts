@@ -1,11 +1,10 @@
 import { Instance, types } from "mobx-state-tree"
 import {
     possibleInterventions,
-    possibleProgressions,
-    PossibleRecommendationsForMovingForward,
 } from "../state/constants"
 import DiagnosticModel from "./DiagnosticModel.mst"
 import FunctioningModel from "./Functioning.mst"
+import GoalModel, { Goal } from "./GoalModel.mst"
 import InterventionModel from "./InterventionModel.mst"
 import MeetingLogisticsModel from "./MeetingLogisticsModel.mst"
 
@@ -17,6 +16,7 @@ const TreatmentPlanModel = types.model('TreatmentPlanModel', {
     functioning: FunctioningModel,
     interventions: types.array(InterventionModel),
     otherInterventions: types.array(types.string),
+    goals: types.array(GoalModel),
     identifiedProblem: types.string,
 }).actions((self) => {
     return {
@@ -55,9 +55,17 @@ const TreatmentPlanModel = types.model('TreatmentPlanModel', {
         removeOtherIntervention(index: number): void {
             self.otherInterventions.replace(self.otherInterventions.filter((int, idx) => idx !== index))
         },
-        
         setIdentifedProblem(problem: string): void {
             self.identifiedProblem = problem
+        },
+        addGoal(goal: Goal): void {
+            self.goals.push(GoalModel.create(goal))
+        },
+        removeGoal(index: number): void {
+            self.goals.splice(index,1)
+        },
+        updateGoal(goal: Goal, index: number): void {
+            self.goals.splice(index,1, GoalModel.create(goal))
         },
     }
 })

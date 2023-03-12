@@ -7,6 +7,7 @@ import Note from "./sections/note/Note";
 import Diagnostic from "./sections/diagnostic/Diagnostic";
 import Functioning from "./sections/functioning/Functioning";
 import Interventions from "./sections/interventions/Interventions";
+import Goals from "./sections/goals/Goals";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="meeting-logistics" element={<MeetingLogistics />} />
         <Route path="diagnostic" element={<Diagnostic />} />
         <Route path="effects-on-functioning" element={<Functioning />} />
+        <Route path="goals" element={<Goals />} />
         <Route path="interventions" element={<Interventions />} />
         <Route path="*" element={<NoMatch />} />
       </Route>

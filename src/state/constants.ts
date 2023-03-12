@@ -112,6 +112,34 @@ export const possibleEffectsOnFunctions = {
     ],
 }
 
+const objectives = {
+    objective1: {
+        text: "",
+        options: {
+            "No Progress": [],
+            "Still Working:": [
+                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+            ],
+            "Finished": ["finished1", "finished2", "finished3"],
+        }
+    },
+    objective2: {
+        text: "",
+        options: {
+            "No Progress": [],
+            "Still Working:": [
+                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+            ],
+            "Finished": ["finished1", "finished2", "finished3"],
+        }
+    },
+
+}
+
 
 export type PossibleAnxietySymptom = typeof possibleSymptoms["F41.1 Generalized Anxiety Disorder"][number]
 export type PossibleDepressionSymptom = typeof possibleSymptoms["F33.1 Major Depressive Disorder, recurrent, moderate"][number]
