@@ -114,30 +114,65 @@ export const possibleEffectsOnFunctions = {
 
 const objectives = {
     objective1: {
-        text: "",
+        text: "[CLIENT] will demonstrate a clear vision for how [PROBLEM] operates in their life. We will know this has been achieved when we have observed some of the following; [CLIENT]  uses externalized language consistently in meetings, [CLIENT] has given the problem an experience near name, [CLIENT] speaks about the effects and tactics of [PROBLEM], [CLIENT] speaks about their history with [PROBLEM], [CLIENT] identified and speaks about people and situations that support [PROBLEM], has identified and speaks about the cultural discourses that support [PROBLEM], [CLIENT] can name and richly describe their values and preferences in relation to [PROBLEM] and/or can identify and speak about some action they have taken to counter [PROBLEM].",
         options: {
-            "No Progress": [],
-            "Still Working:": [
-                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
-                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
-                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
-            ],
-            "Finished": ["finished1", "finished2", "finished3"],
-        }
+            "No Progress": {
+                text: "[CLIENT] has not progressed on this objective",
+            },
+            "Still Working:": {
+                text: "[CLIENT] continues to work towards a clear vision for how [PROBLEM] operates in their life. The following has been observed:",
+                progressions: [
+                    { text: "[CLIENT] consistently speaking about [PROBLEM] in externalized language during therapy meetings." },
+                    { text: "[CLIENT] identifying an experience-near name for  [PROBLEM]." },
+                    { text: "[CLIENT] identifying and speaking about the effects and tactics of [PROBLEM]." },
+                    { text: "[CLIENT] speaking about their history with [PROBLEM]" },
+                    { text: "[CLIENT] identifying and speaking about the people and situations that support [PROBLEM]" },
+                    { text: "[CLIENT] identifying and speaking about the cultural discourses that support [PROBLEM]" },
+                    { text: "[CLIENT] identifying and speaking about  the cultural discourses that support [PROBLEM]" },
+                    { text: "[CLIENT] naming and richly describing their values and preferences in relation to [PROBLEM] " },
+                    { text: "[CLIENT] identifying and speaking about some action they have taken to counter [PROBLEM]." },
+                ],
+            },
+            "Finished": {
+                text: "[CLIENT] has demonstrated a clear vision of how the problem operates in their life. The following has been observed:",
+                progressions: [
+                    { text: "[CLIENT] consistently speaks about  [PROBLEM] in externalized language during therapy meetings." },
+                    { text: "[CLIENT] has identified an experience-near name for the [PROBLEM], [REPLACEMENT].", prompt: "state name" },
+                    { text: "[CLIENT] speaks about the effects and tactics of [PROBLEM] including [REPLACEMENT].", prompt: "name effects and tactics" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                ],
+            }
+        },
     },
     objective2: {
         text: "",
         options: {
-            "No Progress": [],
-            "Still Working:": [
-                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
-                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
-                { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
-            ],
-            "Finished": ["finished1", "finished2", "finished3"],
+            "No Progress": {
+                text: "",
+            },
+            "Still Working:": {
+                text: "All that stuff",
+                progressions: [
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                ],
+            },
+            "Finished": {
+                text: "All that stuff",
+                progressions: [
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                    { text: "whatever [REPLACE ME}", prompt: "PROMPT TEXT" },
+                ],
+            },
         }
     },
-
 }
 
 
