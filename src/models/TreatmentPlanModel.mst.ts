@@ -16,7 +16,9 @@ const TreatmentPlanModel = types.model('TreatmentPlanModel', {
     functioning: FunctioningModel,
     interventions: types.array(InterventionModel),
     otherInterventions: types.array(types.string),
-    goals: types.array(GoalModel),
+    goal1: GoalModel,
+    goal2: GoalModel,
+    goal3: GoalModel,
     identifiedProblem: types.string,
 }).actions((self) => {
     return {
@@ -57,15 +59,6 @@ const TreatmentPlanModel = types.model('TreatmentPlanModel', {
         },
         setIdentifedProblem(problem: string): void {
             self.identifiedProblem = problem
-        },
-        addGoal(goal: Goal): void {
-            self.goals.push(GoalModel.create(goal))
-        },
-        removeGoal(index: number): void {
-            self.goals.splice(index,1)
-        },
-        updateGoal(goal: Goal, index: number): void {
-            self.goals.splice(index,1, GoalModel.create(goal))
         },
     }
 })

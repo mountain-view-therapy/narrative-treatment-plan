@@ -160,12 +160,15 @@ export type PossibleEffectsOnFunctions = PossibleEffectOnSelfCare
 
 export const possibleGoals = [
     {
-        text: "Change the relationship with [PROBLEM] to reduce the frequency, intensity and duration of its effects so that [REPLACEMENT].",
+        text: "Change the relationship with [ISSUE] to reduce the frequency, intensity and duration of its effects so that [REPLACEMENT].",
         prompt: "[specify how functioning will be no longer/less impaired]"
     },
     {
-        text: "[Reduce/Increase] frequency of [REPLACEMENT] in relation to [REPLACEMENT]",
-        prompt: "[specific symptom of diagnosis]",
+        text: "[Reduce/Increase] frequency of [REPLACEMENT] in relation to [ISSUE]",
+        prompt: [
+            "[specific symptom of diagnosis]",
+            "[are of functioning]",
+        ]
     },
 ]
 
@@ -334,6 +337,31 @@ export const initialState = {
         nextMeeting: "",
         otherInterventions: [""],
         otherProgressions: [""],
+        goal1: {
+            possibleGoalsIndex: 0,
+            issue: "",
+            possibleGoalSelectionState: "UNSELECTED",
+            otherGoal: "",
+            replacementText: [],
+            active: true,
+        },
+        goal2: {
+            possibleGoalsIndex: 0,
+            issue: "",
+            possibleGoalSelectionState: "UNSELECTED",
+            otherGoal: "",
+            replacementText: [],
+            active: false,
+        },
+        goal3: {
+            possibleGoalsIndex: 0,
+            issue: "",
+            possibleGoalSelectionState: "UNSELECTED",
+            otherGoal: "",
+            replacementText: [],
+            active: false,
+        },
+
 
     },
     currentTab: "/meeting-logstics",
