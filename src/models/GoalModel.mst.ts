@@ -10,6 +10,7 @@ const GoalModel = types.model('GoalModel', {
     otherGoal: types.string,
     replacementText: types.array(types.string),
     active: false,
+    initiatedAt: types.Date,
 }).actions((self) => {
     return {
         setIssue(issue: string): void {
@@ -20,8 +21,8 @@ const GoalModel = types.model('GoalModel', {
         },
         setCheckedGoal(index: number, checked: boolean): void {
             if (checked) {
-            self.possibleGoalSelectionState = "SELECTED"
-            self.possibleGoalsIndex = index
+                self.possibleGoalSelectionState = "SELECTED"
+                self.possibleGoalsIndex = index
             } else {
                 self.possibleGoalSelectionState = "UNSELECTED"
             }
@@ -35,7 +36,13 @@ const GoalModel = types.model('GoalModel', {
             } else {
                 self.possibleGoalSelectionState = "UNSELECTED"
             }
-        }
+        },
+        setReplacementText(text: string, index: number): void {
+            self.replacementText[index] = text
+        },
+        setInitiatedAt(date: Date): void {
+            self.initiatedAt = date
+        },
     }
 })
 

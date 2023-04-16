@@ -5,6 +5,8 @@ import { useState } from "react";
 import { possibleGoals } from "../../state/constants";
 import { getState } from "../../state/provider";
 import { Goal } from "../../models/GoalModel.mst";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 const Goals = () => {
@@ -35,9 +37,11 @@ const Goals = () => {
     }
 
     const replaceText = (text: string) => {
-        return text.replace('[ISSUE]', goal1.issue)
+        return text
+            .replace('[ISSUE]', currentGoal.issue || '[ISSUE]')
+            .replace('[REPLACEMENT1]', currentGoal.replacementText[0] || '[REPLACEMENT1]')
+            .replace('[REPLACEMENT2]', currentGoal.replacementText[1] || '[REPLACEMENT2]')
     }
-
 
     return (
         <Box overflow='auto' >
@@ -100,6 +104,16 @@ const Goals = () => {
                                 <FormControlLabel value="No" control={<Radio />} label="No" />
                             </RadioGroup>
                         </Stack>
+                        <Stack flexDirection="row" spacing={1} >
+                            <FormLabel id="first-date-of-service-label">
+                                First Date of Service
+                            </FormLabel>
+                            <DatePicker
+                                aria-labelledby="first-date-of-service-label"
+                                selected={currentGoal.initiatedAt}
+                                onChange={(date) => currentGoal.setInitiatedAt(date || new Date())}
+                            />
+                        </Stack>
                         <TextField label="Name of Issue" value={currentGoal.issue} onChange={(e) => currentGoal.setIssue(e.target.value)} />
 
                     </Stack>
@@ -107,7 +121,7 @@ const Goals = () => {
 
                         <Stack flexDirection='column' marginLeft={2}>
 
-                            {possibleGoals.map((possiblGoal, index) =>
+                            {possibleGoals.map((possibleGoal, index) =>
                                 <Stack flexDirection="row" justifyContent="start" alignItems="center">
                                     <Checkbox
                                         checked={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === index}
@@ -116,10 +130,19 @@ const Goals = () => {
                                     />
                                     <Stack>
                                         <Typography
-                                            color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === index ? "black" : "gray"}>{replaceText(possiblGoal.text)}</Typography>
-                                        <TextField disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex === index} value={
-                                            "poop"
-                                        } />
+                                            color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === index ? "black" : "gray"}>
+                                            {currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === index ? replaceText(possibleGoal.text) : possibleGoal.text}
+                                        </Typography>
+                                        <>
+                                            {possibleGoal.prompt.map((prompt: string, replacementIndex: number) =>
+                                                <TextField
+                                                    disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== index}
+                                                    value={currentGoal.possibleGoalsIndex !== index ? "" : currentGoal.replacementText[replacementIndex]}
+                                                    onChange={(e) => currentGoal.setReplacementText(e.target.value, replacementIndex)}
+                                                    placeholder={prompt}
+                                                />
+                                            )}
+                                        </>
                                     </Stack>
                                 </Stack>
                             )}
@@ -133,33 +156,9 @@ const Goals = () => {
 
                             </Stack>
                         </Stack>
+<Typography>Objectives</Typography>
 
 
-
-                        {/* <>
-                            {
-                                possibleGoals.map(possibleGoal =>
-                                    <Box sx={{ border: '1px dashed grey' }} marginTop={1} padding={1}>
-                                        <Typography>{possibleGoal.text}</Typography>
-                                    </Box>
-                                )
-
-
-
-                                
-                            }
-                            < Box sx={{ border: '1px dashed grey' }} marginTop={1} padding={1}>
-                                <Typography>OTHER GOAL</Typography>
-                                <Button variant="contained">Select This Goal</Button>
-                            </Box>
-                        </>
-                        {/* {
-                                goals[currentGoal].goal &&
-                                <>
-                                    <Typography>{goals[currentGoal].goal}</Typography>
-                                    <TextField value={goals[currentGoal].replacementText} onChange={(e) => updateGoal({ ...goals[currentGoal], replacementText: cast([e.target.value]) }, currentGoal)} />
-                                </>
-                            } */}
                     </Box>
 
                     <Box>
