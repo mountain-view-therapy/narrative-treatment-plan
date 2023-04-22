@@ -1,4 +1,5 @@
 import { Instance, types } from "mobx-state-tree"
+import ObjectiveModel from "./ObjectiveModel.mst"
 
 export const GoalSelectionStates = ["UNSELECTED", "SELECTED", "OTHER"]
 export type GoalSelectionState = typeof GoalSelectionStates[number]
@@ -11,6 +12,8 @@ const GoalModel = types.model('GoalModel', {
     replacementText: types.array(types.string),
     active: false,
     initiatedAt: types.Date,
+    estimatedCompletionDate: types.Date,
+    objectives: types.array(ObjectiveModel),
 }).actions((self) => {
     return {
         setIssue(issue: string): void {
@@ -42,6 +45,23 @@ const GoalModel = types.model('GoalModel', {
         },
         setInitiatedAt(date: Date): void {
             self.initiatedAt = date
+        },
+        setEstimatedCompletionDate(date: Date): void {
+            self.estimatedCompletionDate = date
+        },
+        setObjectiveChecked(objectiveIndex: number, value: boolean): void {
+            const index = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex)
+
+            if (value === true) {
+                if (index === -1) {
+                    self.objectives.push(ObjectiveModel.create({ possibleObjectiveIndex: objectiveIndex }))
+                }
+            } else {
+                self.objectives.replace(self.objectives.filter(s => s.possibleObjectiveIndex !== objectiveIndex))
+            }
+        },
+        isObjectiveChecked(objectiveIndex: number): boolean {
+            return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex) !== -1
         },
     }
 })

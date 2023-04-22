@@ -2,7 +2,7 @@ import { AppBar, Box, Toolbar, Stack, Tab, Tabs, Typography, FormControl, FormLa
 import { Container } from "@mui/system";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { possibleGoals } from "../../state/constants";
+import { possibleGoals, possibleObjectives } from "../../state/constants";
 import { getState } from "../../state/provider";
 import { Goal } from "../../models/GoalModel.mst";
 import DatePicker from "react-datepicker";
@@ -14,9 +14,15 @@ const Goals = () => {
         goal1,
         goal2,
         goal3,
+        meetingLogistics: {
+            clientInitials,
+        }
     } } = getState()
 
     const [currentGoal, setCurrentGoal] = useState(goal1)
+    const [goal1Updating, setGoal1Updating] = useState(false)
+    const [goal2Updating, setGoal2Updating] = useState(false)
+    const [goal3Updating, setGoal3Updating] = useState(false)
     const handleChange = (event: React.SyntheticEvent, goal: Goal) => {
         setCurrentGoal(goal)
     }
@@ -39,6 +45,7 @@ const Goals = () => {
     const replaceText = (text: string) => {
         return text
             .replace('[ISSUE]', currentGoal.issue || '[ISSUE]')
+            .replace('[CLIENT]', clientInitials || '[CLIENT]')
             .replace('[REPLACEMENT1]', currentGoal.replacementText[0] || '[REPLACEMENT1]')
             .replace('[REPLACEMENT2]', currentGoal.replacementText[1] || '[REPLACEMENT2]')
     }
@@ -156,16 +163,48 @@ const Goals = () => {
 
                             </Stack>
                         </Stack>
-<Typography>Objectives</Typography>
+                        <Typography>Objectives</Typography>
+                        {possibleObjectives.map((objective, index) =>
+                            <>
+                                <Stack flexDirection="row" justifyContent="start" alignItems="flex-start" marginBottom={5}>
+                                    <Checkbox
+                                        checked={Boolean(currentGoal.objectives.find(selected => index === selected.possibleObjectiveIndex))}
+                                        onChange={(e) => currentGoal.setObjectiveChecked(index, e.target.checked)}
+                                    />
+                                    <Stack>
+                                        <Typography
+                                            color={currentGoal.isObjectiveChecked(index) ? "black" : "gray"}>
+                                            {replaceText(objective.text)}
+                                        </Typography>
+                                        <>
+                                            {/* {objective.prompt.map((prompt: string, replacementIndex: number) =>
+                                                <TextField
+                                                    disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== index}
+                                                    value={currentGoal.possibleGoalsIndex !== index ? "" : currentGoal.replacementText[replacementIndex]}
+                                                    onChange={(e) => currentGoal.setReplacementText(e.target.value, replacementIndex)}
+                                                    placeholder={prompt}
+                                                /> */}
+                                            {/* )} */}
+                                        </>
+                                    </Stack>
+                                </Stack>
+                            </>
+                        )}
 
 
                     </Box>
 
-                    <Box>
-
-                    </Box>
                 </>
-
+                <Stack flexDirection="row" spacing={1} >
+                    <FormLabel id="first-date-of-service-label">
+                        Estimated Date of Completion
+                    </FormLabel>
+                    <DatePicker
+                        aria-labelledby="first-date-of-service-label"
+                        selected={currentGoal.estimatedCompletionDate}
+                        onChange={(date) => currentGoal.setInitiatedAt(date || new Date())}
+                    />
+                </Stack>
             </Box>
         </Box >
     )
