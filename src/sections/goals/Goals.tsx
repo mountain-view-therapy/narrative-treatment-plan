@@ -20,9 +20,7 @@ const Goals = () => {
     } } = getState()
 
     const [currentGoal, setCurrentGoal] = useState(goal1)
-    const [goal1Updating, setGoal1Updating] = useState(false)
-    const [goal2Updating, setGoal2Updating] = useState(false)
-    const [goal3Updating, setGoal3Updating] = useState(false)
+
     const handleChange = (event: React.SyntheticEvent, goal: Goal) => {
         setCurrentGoal(goal)
     }
@@ -44,8 +42,8 @@ const Goals = () => {
 
     const replaceText = (text: string) => {
         return text
-            .replace('[ISSUE]', currentGoal.issue || '[ISSUE]')
-            .replace('[CLIENT]', clientInitials || '[CLIENT]')
+            .replace(/\[ISSUE\]/g, currentGoal.issue || '[ISSUE]')
+            .replace(/\[CLIENT\]/g, clientInitials || '[CLIENT]')
             .replace('[REPLACEMENT1]', currentGoal.replacementText[0] || '[REPLACEMENT1]')
             .replace('[REPLACEMENT2]', currentGoal.replacementText[1] || '[REPLACEMENT2]')
     }
@@ -106,7 +104,12 @@ const Goals = () => {
                     <Stack flexDirection="row" justifyContent="space-evenly">
                         <Stack flexDirection="row" justifyContent="space-evenly" alignItems="center">
                             <Typography marginRight={3}>Is this an update?</Typography>
-                            <RadioGroup row>
+                            <RadioGroup
+                                row
+                                onChange={(e) => currentGoal.setUpdatingGoal(e.target.value === "Yes")}
+                                value={currentGoal.updatingGoal ? "Yes" : "No"}
+                                defaultValue={false}
+                            >
                                 <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
                                 <FormControlLabel value="No" control={<Radio />} label="No" />
                             </RadioGroup>
@@ -176,16 +179,64 @@ const Goals = () => {
                                             color={currentGoal.isObjectiveChecked(index) ? "black" : "gray"}>
                                             {replaceText(objective.text)}
                                         </Typography>
-                                        <>
-                                            {/* {objective.prompt.map((prompt: string, replacementIndex: number) =>
-                                                <TextField
-                                                    disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== index}
-                                                    value={currentGoal.possibleGoalsIndex !== index ? "" : currentGoal.replacementText[replacementIndex]}
-                                                    onChange={(e) => currentGoal.setReplacementText(e.target.value, replacementIndex)}
-                                                    placeholder={prompt}
-                                                /> */}
-                                            {/* )} */}
-                                        </>
+                                        {
+                                            currentGoal.updatingGoal &&
+                                            <Stack flexDirection="column" justifyContent="start" alignItems="flex-start" marginBottom={5}>
+                                                <Stack flexDirection="row">
+                                                    <Checkbox
+                                                        checked={currentGoal.isNoProgressChecked(index)}
+                                                        onChange={(e) => currentGoal.setNoProgressChecked(index, e.target.checked)}
+                                                    />
+                                                    <Typography>{replaceText(objective.options["No Progress"].text)}</Typography>
+
+
+                                                </Stack>
+                                                <Stack flexDirection="row">
+                                                <Checkbox
+                                                        checked={currentGoal.isStillWorkingChecked(index)}
+                                                        onChange={(e) => currentGoal.setStillWorkingChecked(index, e.target.checked)}
+                                                    />
+                                                    <Typography>{replaceText(objective.options["Still Working"].text)}</Typography>
+
+                                                </Stack>
+                                                <Stack>
+                                                    {
+                                                        objective.options["Still Working"].progressions.map((progression, stillWorkingProgressionsIndex) =>
+                                                            <Stack flexDirection="row" paddingLeft={10}>
+                                                                <Checkbox
+                                                                    checked={currentGoal.isStillWorkingProgressionChecked(index, stillWorkingProgressionsIndex)}
+                                                                    onChange={(e) => currentGoal.setStillWorkingProgressionChecked(index, stillWorkingProgressionsIndex, e.target.checked)}
+                                                                />
+                                                                <Typography>{replaceText(progression.text)}</Typography>
+                                                            </Stack>
+                                                        )
+                                                    }
+                                                </Stack>
+
+                                                <Stack flexDirection="row">
+                                                <Checkbox
+                                                        checked={currentGoal.isFinishedChecked(index)}
+                                                        onChange={(e) => currentGoal.setFinishedChecked(index, e.target.checked)}
+                                                    />
+                                                    <Typography>{replaceText(objective.options["Finished"].text)}</Typography>
+                                                </Stack>
+                                                <Stack>
+                                                    {
+                                                        objective.options["Finished"].progressions.map((progression, finishedProgressionIndex) =>
+                                                            <Stack flexDirection="row" paddingLeft={10}>
+                                                                <Checkbox
+                                                                checked={currentGoal.isFinishedProgressionChecked(index, finishedProgressionIndex)}
+                                                                onChange={(e) => currentGoal.setFinishedProgressionChecked(index, finishedProgressionIndex, e.target.checked)}
+                                                            />
+                                                                <Typography>{replaceText(progression.text)}</Typography>
+                                                            </Stack>
+                                                        )
+                                                    }
+                                                </Stack>
+
+                                            </Stack>
+                                        }
+
                                     </Stack>
                                 </Stack>
                             </>
@@ -202,7 +253,7 @@ const Goals = () => {
                     <DatePicker
                         aria-labelledby="first-date-of-service-label"
                         selected={currentGoal.estimatedCompletionDate}
-                        onChange={(date) => currentGoal.setInitiatedAt(date || new Date())}
+                        onChange={(date) => currentGoal.setEstimatedCompletionDate(date || new Date())}
                     />
                 </Stack>
             </Box>

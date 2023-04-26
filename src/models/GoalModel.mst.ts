@@ -13,7 +13,8 @@ const GoalModel = types.model('GoalModel', {
     active: false,
     initiatedAt: types.Date,
     estimatedCompletionDate: types.Date,
-    objectives: types.array(ObjectiveModel),
+    objectives: types.array(types.reference(ObjectiveModel)),
+    updatingGoal: false,
 }).actions((self) => {
     return {
         setIssue(issue: string): void {
@@ -62,6 +63,79 @@ const GoalModel = types.model('GoalModel', {
         },
         isObjectiveChecked(objectiveIndex: number): boolean {
             return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex) !== -1
+        },
+        isNoProgressChecked(objectiveIndex: number): boolean {
+            const poop = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.noProgressChecked) !== -1
+            console.log("isNoProgressChecked: ", objectiveIndex, " : ", poop)
+            return poop;
+
+        },
+        isStillWorkingChecked(objectiveIndex: number): boolean {
+            return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.stillWorkingChecked) !== -1
+        },
+        isFinishedChecked(objectiveIndex: number): boolean {
+            return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.finishedChecked) !== -1
+        },
+
+        isNoProgressProgressionChecked(objectiveIndex: number): boolean {
+            const poop = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.noProgressChecked) !== -1
+            console.log("isNoProgressChecked: ", objectiveIndex, " : ", poop)
+            return poop;
+
+        },
+
+        isStillWorkingProgressionChecked(objectiveIndex: number, progressionIndex: number): boolean {
+            return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.stillWorkingChecked && objective.stillWorkingProgressions.includes(progressionIndex)) !== -1
+        },
+        isFinishedProgressionChecked(objectiveIndex: number, progressionIndex: number): boolean {
+            return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.finishedChecked && objective.finshedCheckingProgressions.includes(progressionIndex)) !== -1
+        },
+
+
+        setUpdatingGoal(updatingGoal: boolean): void {
+            self.updatingGoal = updatingGoal
+        },
+        setNoProgressChecked(objectiveIndex: number, value: boolean): void {
+            console.log("setNoProgressChecked: ", objectiveIndex, " : ", value)
+            const index = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex)
+            if (index === -1) { return }
+            self.objectives.splice(index, 1, { ...self.objectives[index], noProgressChecked: value })
+        },
+        setStillWorkingChecked(objectiveIndex: number, value: boolean): void {
+            const index = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex)
+            if (index === -1) { return }
+            self.objectives.splice(index, 1, { ...self.objectives[index], stillWorkingChecked: value })
+        },
+        setFinishedChecked(objectiveIndex: number, value: boolean): void {
+            const index = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex)
+            if (index === -1) { return }
+            self.objectives.splice(index, 1, { ...self.objectives[index], finishedChecked: value })
+        },
+        setStillWorkingProgressionChecked(objectiveIndexIn: number, progressionIndexIn: number, value: boolean): void {
+            const objectiveIndex = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndexIn)
+            if (objectiveIndex === -1) { return }
+            const progressionSelected = self.objectives[objectiveIndex].stillWorkingProgressions.includes(progressionIndexIn)
+
+            if (value === true) {
+                if (!progressionSelected) {
+                    self.objectives[objectiveIndex].stillWorkingProgressions.push(progressionIndexIn)
+                }
+            } else {
+                self.objectives[objectiveIndex].stillWorkingProgressions.replace(self.objectives[objectiveIndex].stillWorkingProgressions.filter(s => s !== progressionIndexIn))
+            }
+        },
+        setFinishedProgressionChecked(objectiveIndexIn: number, progressionIndexIn: number, value: boolean): void {
+            const objectiveIndex = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndexIn)
+            if (objectiveIndex === -1) { return }
+            const progressionChecked = self.objectives[objectiveIndex].finshedCheckingProgressions.includes(progressionIndexIn)
+
+            if (value === true) {
+                if (!progressionChecked) {
+                    self.objectives[objectiveIndex].finshedCheckingProgressions.push(progressionIndexIn)
+                }
+            } else {
+                self.objectives[objectiveIndex].finshedCheckingProgressions.replace(self.objectives[objectiveIndex].finshedCheckingProgressions.filter(s => s !== progressionIndexIn))
+            }
         },
     }
 })

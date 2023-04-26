@@ -120,7 +120,7 @@ export const possibleObjectives =
                 "No Progress": {
                     text: "[CLIENT] has not progressed on this objective",
                 },
-                "Still Working:": {
+                "Still Working": {
                     text: "[CLIENT] continues to work towards a clear vision for how [ISSUE] operates in their life. The following has been observed:",
                     progressions: [
                         { text: "[CLIENT] consistently speaking about [ISSUE] in externalized language during therapy meetings." },
@@ -155,7 +155,7 @@ export const possibleObjectives =
                 "No Progress": {
                     text: "[CLIENT] has not progressed on this objective",
                 },
-                "Still Working:": {
+                "Still Working": {
                     text: "[CLIENT] continues to work towards developing a preferred narrative for their life that reduces the presence and or role of [ISSUE]. The following has been observed:",
                     progressions: [
                         { text: "[CLIENT] speaking richly about times when the problem has less influence." },
@@ -186,7 +186,7 @@ export const possibleObjectives =
                 "No Progress": {
                     text: "[CLIENT] has not progressed on this objective",
                 },
-                "Still Working:": {
+                "Still Working": {
                     text: "[CLIENT] continues to work towards maintaining a connection with their preferred narrative that decreases the presence and/or role of the [ISSUE] in their life. The following has been observed:",
                     progressions: [
                         { text: "[CLIENT] developing effective strategies for countering [ISSUE]." },

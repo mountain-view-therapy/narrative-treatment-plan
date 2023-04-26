@@ -1,13 +1,20 @@
 import { Instance, types } from "mobx-state-tree"
 
-export const GoalSelectionStates = ["UNSELECTED", "SELECTED", "OTHER"]
-export type GoalSelectionState = typeof GoalSelectionStates[number]
+// export const ProgressStates = ["Unselected", "No Progress", "Still Working", "Finished"]
+// export type ProgressState = typeof ProgressStates[number]
 
 const ObjectiveModel = types.model('ObjectiveModel', {
     possibleObjectiveIndex: types.number,
+    noProgressChecked: false,
+    stillWorkingChecked: false,
+    finishedChecked: false,
+    stillWorkingProgressions: types.array(types.number),
+    finshedCheckingProgressions: types.array(types.number),
 
 }).actions((self) => {
     return {
+
+
         // setIssue(issue: string): void {
         //     self.issue = issue
         // },
