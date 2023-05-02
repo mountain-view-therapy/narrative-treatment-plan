@@ -112,6 +112,8 @@ export const possibleEffectsOnFunctions = {
     ],
 }
 
+
+
 export const possibleObjectives =
     [
         {
@@ -138,13 +140,13 @@ export const possibleObjectives =
                     text: "[CLIENT] has demonstrated a clear vision of how the problem operates in their life. The following has been observed:",
                     progressions: [
                         { text: "[CLIENT] consistently speaks about [ISSUE] in externalized language during therapy meetings." },
-                        { text: "[CLIENT] has identified an experience-near name for the [ISSUE], [REPLACEMENT].", prompt: "state name" },
-                        { text: "[CLIENT] speaks about the effects and tactics of [ISSUE] including [REPLACEMENT].", prompt: "name effects and tactics" },
-                        { text: "[CLIENT] speaks about their past experiences with [ISSUE] including [REPLACEMENT].", prompt: "name experiences" },
-                        { text: "[CLIENT] identified and speaks about people and situations that support [ISSUE] including [REPLACEMENT].", prompt: "name people and situations" },
-                        { text: "[CLIENT] has identified and speaks about the cultural discourses that support [ISSUE] including [REPLACEMENT].", prompt: "name discourses" },
-                        { text: "[CLIENT] has named and richly described their values and preferences in relation to [ISSUE] including [REPLACEMENT].", prompt: "name values and preferences" },
-                        { text: "[CLIENT] has named and richly described actions they have taken to counter [ISSUE] including [REPLACEMENT].", prompt: "name actions" },
+                        { text: "[CLIENT] has identified an experience-near name for the [ISSUE], [REPLACEMENT1].", prompt: "state name" },
+                        { text: "[CLIENT] speaks about the effects and tactics of [ISSUE] including [REPLACEMENT1].", prompt: "name effects and tactics" },
+                        { text: "[CLIENT] speaks about their past experiences with [ISSUE] including [REPLACEMENT1].", prompt: "name experiences" },
+                        { text: "[CLIENT] identified and speaks about people and situations that support [ISSUE] including [REPLACEMENT1].", prompt: "name people and situations" },
+                        { text: "[CLIENT] has identified and speaks about the cultural discourses that support [ISSUE] including [REPLACEMENT1].", prompt: "name discourses" },
+                        { text: "[CLIENT] has named and richly described their values and preferences in relation to [ISSUE] including [REPLACEMENT1].", prompt: "name values and preferences" },
+                        { text: "[CLIENT] has named and richly described actions they have taken to counter [ISSUE] including [REPLACEMENT1].", prompt: "name actions" },
                     ],
                 }
             },
@@ -170,12 +172,12 @@ export const possibleObjectives =
                 "Finished": {
                     text: "A[CLIENT] has developed a preferred narrative for their life that has reduced the presence and/or role of [ISSUE]. The following has been observed:",
                     progressions: [
-                        { text: "[CLIENT] speaks richly about times when the problem has less influence including [REPLACEMENT].", prompt: "name experiences" },
-                        { text: "[CLIENT] identifies actions they have taken that support their preferred narrative including [REPLACEMENT].", prompt: "name actions" },
-                        { text: "[CLIENT]  identifies different situations and/or people who will support their preferred narrative including [REPLACEMENT].", prompt: "name situations or people" },
-                        { text: "[CLIENT] identified past experiences including [REPLACEMENT] that support their preferred narrative.", prompt: "name past experiences" },
+                        { text: "[CLIENT] speaks richly about times when the problem has less influence including [REPLACEMENT1].", prompt: "name experiences" },
+                        { text: "[CLIENT] identifies actions they have taken that support their preferred narrative including [REPLACEMENT1].", prompt: "name actions" },
+                        { text: "[CLIENT]  identifies different situations and/or people who will support their preferred narrative including [REPLACEMENT1].", prompt: "name situations or people" },
+                        { text: "[CLIENT] identified past experiences including [REPLACEMENT1] that support their preferred narrative.", prompt: "name past experiences" },
                         { text: "[CLIENT]  has considered how their preferred narrative fits their cultural context." },
-                        { text: "[CLIENT] will have developed and practiced strategies to counter [ISSUE] including [REPLACEMENT]", prompt: "name strategies" },
+                        { text: "[CLIENT] will have developed and practiced strategies to counter [ISSUE] including [REPLACEMENT1]", prompt: "name strategies" },
                     ],
                 },
             }
@@ -199,10 +201,10 @@ export const possibleObjectives =
                 "Finished": {
                     text: "All that stuff",
                     progressions: [
-                        { text: "[CLIENT] has developed effective strategies for countering [ISSUE] including [REPLACEMENT] and uses them consistently.", prompt: "name strategies" },
+                        { text: "[CLIENT] has developed effective strategies for countering [ISSUE] including [REPLACEMENT1] and uses them consistently.", prompt: "name strategies" },
                         { text: "[CLIENT] richly describes a preferred narrative incorporating their stated values and preferences." },
                         { text: "[CLIENT] regularly reports in meetings about how they have countered [ISSUE]." },
-                        { text: "[CLIENT] reports they have recruited people to support their preferred narrative including [REPLACEMENT].", prompt: "name people" },
+                        { text: "[CLIENT] reports they have recruited people to support their preferred narrative including [REPLACEMENT1].", prompt: "name people" },
                         { text: "[ISSUE] takes up less space in meetings and is replaced by accounts of living their preferred story. " },
                         { text: "[CLIENT] speaks about themselves through the lens of their preferred story. " },
                     ],
@@ -210,6 +212,9 @@ export const possibleObjectives =
             }
         }
     ]
+
+export type PossibleObjective = typeof possibleObjectives[number]
+
 
 
 export type PossibleAnxietySymptom = typeof possibleSymptoms["F41.1 Generalized Anxiety Disorder"][number]
@@ -243,69 +248,75 @@ export const possibleGoals = [
     },
 ]
 
+export type PossibleGoal = typeof possibleGoals[number]
+
+
 export const possibleProgressions = [
     { text: "[CLIENT] consistently speaks about [ISSUE] in externalized language during therapy meetings." },
     {
-        text: "[CLIENT] identified and verbalized an experience near name for the problem, [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized an experience near name for the problem, [REPLACEMENT1].",
         prompt: "[state name]",
     },
     {
-        text: "[CLIENT] identified and verbalized effects of [ISSUE] including [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized effects of [ISSUE] including [REPLACEMENT1].",
         prompt: "[list effects identified]",
     },
     {
-        text: "[CLIENT] identified and verbalized tactics used by [ISSUE] including [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized tactics used by [ISSUE] including [REPLACEMENT1].",
         prompt: "[list tactics identified]"
     },
     {
-        text: "[CLIENT] developed and practiced strategies that counter the effects and tactics of [ISSUE] including [REPLACEMENT].",
+        text: "[CLIENT] developed and practiced strategies that counter the effects and tactics of [ISSUE] including [REPLACEMENT1].",
         prompt: "[list strategies]"
     },
     {
-        text: "[CLIENT] identified and verbalized past experiences that support or sustain the problematic relationship with [ISSUE] including [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized past experiences that support or sustain the problematic relationship with [ISSUE] including [REPLACEMENT1].",
         prompt: "[name experiences]",
     },
     {
-        text: "[CLIENT] identified and verbalized cultural discourses that support and sustain their relationship with [ISSUE] including [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized cultural discourses that support and sustain their relationship with [ISSUE] including [REPLACEMENT1].",
         prompt: "[name discourses]",
     },
     {
-        text: "[CLIENT] identified and verbalized a rich description of their values/preferences in relationship to [ISSUE] including [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized a rich description of their values/preferences in relationship to [ISSUE] including [REPLACEMENT1].",
         prompt: "[name values/preferences]",
     },
     { text: "[CLIENT] named and richly described a re-authored preferred narrative that supports their stated values/preferences and does not support [ISSUE]’s narrative." },
     {
-        text: "[CLIENT] identified and verbalized actions they have taken to support their preferred narrative including  [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized actions they have taken to support their preferred narrative including  [REPLACEMENT1].",
         prompt: "[list actions]",
     },
     {
-        text: "[CLIENT] identified [REPLACEMENT] as a person who will support their preferred narrative.",
+        text: "[CLIENT] identified [REPLACEMENT1] as a person who will support their preferred narrative.",
         prompt: "[name person]",
     },
     {
-        text: "[CLIENT]  connected with [REPLACEMENT] to help support their preferred narrative.",
+        text: "[CLIENT]  connected with [REPLACEMENT1] to help support their preferred narrative.",
         prompt: "[name person]."
     },
     {
-        text: "[CLIENT] identified and verbalized past experiences that support their preferred narrative including [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized past experiences that support their preferred narrative including [REPLACEMENT1].",
         prompt: "[list experiences]",
     },
     {
-        text: "[CLIENT] identified and verbalized situations that support their preferred narrative including [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized situations that support their preferred narrative including [REPLACEMENT1].",
         prompt: "[list situations]",
     },
     {
-        text: "[CLIENT] identified and verbalized cultural discourses that support their preferred narrative including [REPLACEMENT].",
+        text: "[CLIENT] identified and verbalized cultural discourses that support their preferred narrative including [REPLACEMENT1].",
         prompt: "[list discourses]",
     },
     {
-        text: "[CLIENT] learned and implemented behavioral strategies to exert acute control over relationship with [ISSUE] including [REPLACEMENT].",
+        text: "[CLIENT] learned and implemented behavioral strategies to exert acute control over relationship with [ISSUE] including [REPLACEMENT1].",
         prompt: "[list strategies].",
     },
     {
         text: "[CLIENT] reported connection to their preferred stories as a means to decrease the [ISSUE]’s influence.",
     },
 ]
+
+export type PossibleProgression = typeof possibleProgressions[number]
+
 
 
 export const possibleInterventions = [
@@ -329,7 +340,7 @@ export const possibleInterventions = [
     { text: "Refer [CLIENT] to physician for medical evaluation. " },
     { text: "Refer to resources to learn meditation/mindfulness. Incorporated the use of these skills in alternative/preferred story development." },
     {
-        text: "Work with [CLIENT] to develop a concrete preferred action plan in relation to [REPLACEMENT].",
+        text: "Work with [CLIENT] to develop a concrete preferred action plan in relation to [REPLACEMENT1].",
         prompt: "[name activities of daily living ex. eating, sleeping, exercise]"
     },
 ]
@@ -414,7 +425,7 @@ export const initialState = {
             replacementText: [],
             active: true,
             initiatedAt: new Date(),
-            estimatedCompletionDate: new Date((new Date()).setMonth((new Date()).getMonth()+6)),
+            estimatedCompletionDate: new Date((new Date()).setMonth((new Date()).getMonth() + 6)),
         },
         goal2: {
             possibleGoalsIndex: 0,
@@ -424,7 +435,7 @@ export const initialState = {
             replacementText: [],
             active: false,
             initiatedAt: new Date(),
-            estimatedCompletionDate: new Date((new Date()).setMonth((new Date()).getMonth()+6)),
+            estimatedCompletionDate: new Date((new Date()).setMonth((new Date()).getMonth() + 6)),
         },
         goal3: {
             possibleGoalsIndex: 0,
@@ -434,7 +445,7 @@ export const initialState = {
             replacementText: [],
             active: false,
             initiatedAt: new Date(),
-            estimatedCompletionDate: new Date((new Date()).setMonth((new Date()).getMonth()+6)),
+            estimatedCompletionDate: new Date((new Date()).setMonth((new Date()).getMonth() + 6)),
         },
     },
     currentTab: "/meeting-logstics",

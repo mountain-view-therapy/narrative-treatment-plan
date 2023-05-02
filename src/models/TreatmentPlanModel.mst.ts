@@ -4,7 +4,7 @@ import {
 } from "../state/constants"
 import DiagnosticModel from "./DiagnosticModel.mst"
 import FunctioningModel from "./Functioning.mst"
-import GoalModel, { Goal } from "./GoalModel.mst"
+import GoalModel from "./GoalModel.mst"
 import InterventionModel from "./InterventionModel.mst"
 import MeetingLogisticsModel from "./MeetingLogisticsModel.mst"
 

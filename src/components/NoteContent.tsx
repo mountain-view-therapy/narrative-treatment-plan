@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite"
 import { getState } from "../state/provider"
+import { possibleGoals, possibleObjectives, possibleProgressions } from "../state/constants"
 
 const NoteContent = () => {
 
@@ -36,16 +37,31 @@ const NoteContent = () => {
         identifiedProblem,
         interventions,
         otherInterventions,
+        goal1,
+        goal2,
+        goal3,
 
     } } = getState()
 
 
-    const replaceText = (text: string, replacementText: string) => {
-        return text.replace('[PROBLEM]', identifiedProblem).replace('[CLIENT]', clientInitials).replace('[REPLACEMENT]', replacementText)
+    const replaceText = (text: string, replacementText: string[], issue?: string) => {
+        return text.replace(/\[ISSUE\]/g, issue || "")
+            .replace(/\[CLIENT\]/g, clientInitials)
+            .replace('[REPLACEMENT1]', replacementText[0])
+            .replace('[REPLACEMENT2]', replacementText[1])
     }
     const replaceClientsIntitals = (text: string) => {
         return text.replace('[CLIENT]', clientInitials)
     }
+
+
+    // const replaceText = (text: string) => {
+    //     return text
+    //         .replace(/\[ISSUE\]/g, currentGoal.issue || '[ISSUE]')
+    //         .replace(/\[CLIENT\]/g, clientInitials || '[CLIENT]')
+    //         .replace('[REPLACEMENT1]', currentGoal.replacementText[0] || '[REPLACEMENT1]')
+    //         .replace('[REPLACEMENT2]', currentGoal.replacementText[1] || '[REPLACEMENT2]')
+    // }
 
     // if (!startTime || !endTime) {
     //     return (
@@ -149,11 +165,90 @@ const NoteContent = () => {
                 }
             </div>
 
+            {(goal1.issue || goal2.issue || goal3.issue) &&
+                <>
+                    <b>Goals</b>
+                    {goal1.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 1:</p>}
+                    {
+                        goal1.possibleGoalSelectionState === 'SELECTED' &&
+                        <p>{replaceText(possibleGoals[goal1.possibleGoalsIndex].text, goal1.replacementText, goal1.issue)}</p>
+                    }
+                    {
+                        goal1.possibleGoalSelectionState === 'OTHER' &&
+                        <p>{replaceText(goal1.otherGoal, [])}</p>
+                    }
+                    {
+                        goal1.objectives.length > 0 &&
+                        <>
+                            <p>Goal 1 Objectives: </p>
+                            <ul>
+                                {goal1.objectives.map((objective, index) =>
+                                    <>
+                                        <li>{replaceText(possibleObjectives[objective.possibleObjectiveIndex].text, ["POOP"], "POOP")}
+                                            <p></p>
+                                            <ul>
+                                                {objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
+                                                {objective.stillWorkingChecked &&
+                                                    <li>
+                                                        {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
+                                                        <ul>
+                                                            {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+
+                                                        </ul>
+                                                    </li>
+                                                }
+                                                {objective.finishedChecked &&
+                                                    <li>
+                                                        {replaceText(possibleObjectives[index].options["Finished"].text, [])}
+                                                        <ul>
+                                                            {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+
+                                                        </ul>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                        <p></p>
+                                    </>
+                                )
+                                }
+
+                            </ul>
+                        </>
+                    }
+
+
+                    {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 2:</p>}
+                    {
+                        goal2.possibleGoalSelectionState === 'SELECTED' &&
+                        <p>{replaceText(possibleGoals[goal2.possibleGoalsIndex].text, goal2.replacementText, goal2.issue)}</p>
+                    }
+                    {
+                        goal2.possibleGoalSelectionState === 'OTHER' &&
+                        <p>{replaceText(goal2.otherGoal, [])}</p>
+                    }
+
+
+
+                    {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 3:</p>}
+
+                    {
+                        goal3.possibleGoalSelectionState === 'SELECTED' &&
+                        <p>{replaceText(possibleGoals[goal3.possibleGoalsIndex].text, goal3.replacementText, goal3.issue)}</p>
+                    }
+                    {
+                        goal2.possibleGoalSelectionState === 'OTHER' &&
+                        <p>{replaceText(goal3.otherGoal, [])}</p>
+                    }
+
+                </>
+            }
+
             {(interventions.length > 0 || otherInterventions.length > 0) &&
                 <b>Interventions:</b>
             }
             {interventions.filter(i => i.checked).map(intervention => (
-                <p key={intervention.text}>{replaceText(intervention.text, intervention.replacementText)}</p>)
+                <p key={intervention.text}>{replaceText(intervention.text, [intervention.replacementText], identifiedProblem)}</p>)
             )
             }
 

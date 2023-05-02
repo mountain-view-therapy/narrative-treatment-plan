@@ -1,13 +1,14 @@
-import { AppBar, Box, Toolbar, Stack, Tab, Tabs, Typography, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, TextField, Button, Checkbox } from "@mui/material";
+import { AppBar, Box, Toolbar, Stack, Tab, Tabs, Typography, FormLabel, RadioGroup, FormControlLabel, Radio, TextField, Checkbox } from "@mui/material";
 import { Container } from "@mui/system";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { possibleGoals, possibleObjectives } from "../../state/constants";
 import { getState } from "../../state/provider";
-import { Goal } from "../../models/GoalModel.mst";
+import { IGoal } from "../../models/GoalModel.mst";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import Objective from "./Objective";
+import Goal from "./Goal";
 
 const Goals = () => {
     const { treatmentPlan: {
@@ -21,7 +22,7 @@ const Goals = () => {
 
     const [currentGoal, setCurrentGoal] = useState(goal1)
 
-    const handleChange = (event: React.SyntheticEvent, goal: Goal) => {
+    const handleChange = (event: React.SyntheticEvent, goal: IGoal) => {
         setCurrentGoal(goal)
     }
 
@@ -38,14 +39,6 @@ const Goals = () => {
             goal1.setActive()
             setCurrentGoal(goal1)
         }
-    }
-
-    const replaceText = (text: string) => {
-        return text
-            .replace(/\[ISSUE\]/g, currentGoal.issue || '[ISSUE]')
-            .replace(/\[CLIENT\]/g, clientInitials || '[CLIENT]')
-            .replace('[REPLACEMENT1]', currentGoal.replacementText[0] || '[REPLACEMENT1]')
-            .replace('[REPLACEMENT2]', currentGoal.replacementText[1] || '[REPLACEMENT2]')
     }
 
     return (
@@ -132,29 +125,11 @@ const Goals = () => {
                         <Stack flexDirection='column' marginLeft={2}>
 
                             {possibleGoals.map((possibleGoal, index) =>
-                                <Stack flexDirection="row" justifyContent="start" alignItems="center">
-                                    <Checkbox
-                                        checked={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === index}
-                                        onChange={(e) => currentGoal.setCheckedGoal(index, e.target.checked)}
-
-                                    />
-                                    <Stack>
-                                        <Typography
-                                            color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === index ? "black" : "gray"}>
-                                            {currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === index ? replaceText(possibleGoal.text) : possibleGoal.text}
-                                        </Typography>
-                                        <>
-                                            {possibleGoal.prompt.map((prompt: string, replacementIndex: number) =>
-                                                <TextField
-                                                    disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== index}
-                                                    value={currentGoal.possibleGoalsIndex !== index ? "" : currentGoal.replacementText[replacementIndex]}
-                                                    onChange={(e) => currentGoal.setReplacementText(e.target.value, replacementIndex)}
-                                                    placeholder={prompt}
-                                                />
-                                            )}
-                                        </>
-                                    </Stack>
-                                </Stack>
+                                <Goal
+                                    goal={currentGoal}
+                                    possibleGoal={possibleGoal}
+                                    index={index}
+                                />
                             )}
                             <Stack flexDirection="row" justifyContent="start" alignItems="center" marginTop={2}>
                                 <Checkbox
@@ -167,82 +142,14 @@ const Goals = () => {
                             </Stack>
                         </Stack>
                         <Typography>Objectives</Typography>
-                        {possibleObjectives.map((objective, index) =>
-                            <>
-                                <Stack flexDirection="row" justifyContent="start" alignItems="flex-start" marginBottom={5}>
-                                    <Checkbox
-                                        checked={Boolean(currentGoal.objectives.find(selected => index === selected.possibleObjectiveIndex))}
-                                        onChange={(e) => currentGoal.setObjectiveChecked(index, e.target.checked)}
-                                    />
-                                    <Stack>
-                                        <Typography
-                                            color={currentGoal.isObjectiveChecked(index) ? "black" : "gray"}>
-                                            {replaceText(objective.text)}
-                                        </Typography>
-                                        {
-                                            currentGoal.updatingGoal &&
-                                            <Stack flexDirection="column" justifyContent="start" alignItems="flex-start" marginBottom={5}>
-                                                <Stack flexDirection="row">
-                                                    <Checkbox
-                                                        checked={currentGoal.isNoProgressChecked(index)}
-                                                        onChange={(e) => currentGoal.setNoProgressChecked(index, e.target.checked)}
-                                                    />
-                                                    <Typography>{replaceText(objective.options["No Progress"].text)}</Typography>
-
-
-                                                </Stack>
-                                                <Stack flexDirection="row">
-                                                <Checkbox
-                                                        checked={currentGoal.isStillWorkingChecked(index)}
-                                                        onChange={(e) => currentGoal.setStillWorkingChecked(index, e.target.checked)}
-                                                    />
-                                                    <Typography>{replaceText(objective.options["Still Working"].text)}</Typography>
-
-                                                </Stack>
-                                                <Stack>
-                                                    {
-                                                        objective.options["Still Working"].progressions.map((progression, stillWorkingProgressionsIndex) =>
-                                                            <Stack flexDirection="row" paddingLeft={10}>
-                                                                <Checkbox
-                                                                    checked={currentGoal.isStillWorkingProgressionChecked(index, stillWorkingProgressionsIndex)}
-                                                                    onChange={(e) => currentGoal.setStillWorkingProgressionChecked(index, stillWorkingProgressionsIndex, e.target.checked)}
-                                                                />
-                                                                <Typography>{replaceText(progression.text)}</Typography>
-                                                            </Stack>
-                                                        )
-                                                    }
-                                                </Stack>
-
-                                                <Stack flexDirection="row">
-                                                <Checkbox
-                                                        checked={currentGoal.isFinishedChecked(index)}
-                                                        onChange={(e) => currentGoal.setFinishedChecked(index, e.target.checked)}
-                                                    />
-                                                    <Typography>{replaceText(objective.options["Finished"].text)}</Typography>
-                                                </Stack>
-                                                <Stack>
-                                                    {
-                                                        objective.options["Finished"].progressions.map((progression, finishedProgressionIndex) =>
-                                                            <Stack flexDirection="row" paddingLeft={10}>
-                                                                <Checkbox
-                                                                checked={currentGoal.isFinishedProgressionChecked(index, finishedProgressionIndex)}
-                                                                onChange={(e) => currentGoal.setFinishedProgressionChecked(index, finishedProgressionIndex, e.target.checked)}
-                                                            />
-                                                                <Typography>{replaceText(progression.text)}</Typography>
-                                                            </Stack>
-                                                        )
-                                                    }
-                                                </Stack>
-
-                                            </Stack>
-                                        }
-
-                                    </Stack>
-                                </Stack>
-                            </>
-                        )}
-
-
+                        {
+                            possibleObjectives.map((objective, index) =>
+                                <Objective
+                                    objective={objective}
+                                    index={index}
+                                    goal={currentGoal} />
+                            )
+                        }
                     </Box>
 
                 </>
