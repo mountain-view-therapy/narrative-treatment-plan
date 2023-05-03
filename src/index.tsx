@@ -6,15 +6,27 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { StateProvider } from './state/provider';
 import { HashRouter } from "react-router-dom";
+import { ThemeProvider, createTheme } from '@mui/material';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#027d24"
+    }
+  }
+});
+
 root.render(
   <React.StrictMode>
     <StateProvider>
       <HashRouter basename="/">
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </HashRouter>
     </StateProvider>
   </React.StrictMode>
