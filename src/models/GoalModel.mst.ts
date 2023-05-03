@@ -65,9 +65,7 @@ const GoalModel = types.model('GoalModel', {
             return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex) !== -1
         },
         isNoProgressChecked(objectiveIndex: number): boolean {
-            const poop = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.noProgressChecked) !== -1
-            console.log("isNoProgressChecked: ", objectiveIndex, " : ", poop)
-            return poop;
+            return  self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.noProgressChecked) !== -1
 
         },
         isStillWorkingChecked(objectiveIndex: number): boolean {
@@ -78,10 +76,7 @@ const GoalModel = types.model('GoalModel', {
         },
 
         isNoProgressProgressionChecked(objectiveIndex: number): boolean {
-            const poop = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.noProgressChecked) !== -1
-            console.log("isNoProgressChecked: ", objectiveIndex, " : ", poop)
-            return poop;
-
+            return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.noProgressChecked) !== -1
         },
 
         isStillWorkingProgressionChecked(objectiveIndex: number, progressionIndex: number): boolean {

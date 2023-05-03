@@ -184,7 +184,101 @@ const NoteContent = () => {
                             <ul>
                                 {goal1.objectives.map((objective, index) =>
                                     <>
-                                        <li>{replaceText(possibleObjectives[objective.possibleObjectiveIndex].text, ["POOP"], "POOP")}
+                                        <li>{replaceText(possibleObjectives[objective.possibleObjectiveIndex].text, goal1.replacementText, goal1.issue)}
+                                            <p></p>
+                                            <ul>
+                                                {objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
+                                                {objective.stillWorkingChecked &&
+                                                    <li>
+                                                        {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
+                                                        <ul>
+                                                            {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+
+                                                        </ul>
+                                                    </li>
+                                                }
+                                                {objective.finishedChecked &&
+                                                    <li>
+                                                        {replaceText(possibleObjectives[index].options["Finished"].text, [])}
+                                                        <ul>
+                                                            {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+
+                                                        </ul>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                        <p></p>
+                                    </>
+                                )
+                                }
+                            </ul>
+                        </>
+                    }
+                    {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 2:</p>}
+                    {
+                        goal2.possibleGoalSelectionState === 'SELECTED' &&
+                        <p>{replaceText(possibleGoals[goal2.possibleGoalsIndex].text, goal2.replacementText, goal2.issue)}</p>
+                    }
+                    {
+                        goal2.possibleGoalSelectionState === 'OTHER' &&
+                        <p>{replaceText(goal2.otherGoal, [])}</p>
+                    }
+                    {
+                        goal2.objectives.length > 0 &&
+                        <>
+                            <p>Goal 2 Objectives: </p>
+                            <ul>
+                                {goal2.objectives.map((objective, index) =>
+                                    <>
+                                        <li>{replaceText(possibleObjectives[objective.possibleObjectiveIndex].text, goal2.replacementText, goal2.issue)}
+                                            <p></p>
+                                            <ul>
+                                                {objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
+                                                {objective.stillWorkingChecked &&
+                                                    <li>
+                                                        {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
+                                                        <ul>
+                                                            {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+
+                                                        </ul>
+                                                    </li>
+                                                }
+                                                {objective.finishedChecked &&
+                                                    <li>
+                                                        {replaceText(possibleObjectives[index].options["Finished"].text, [])}
+                                                        <ul>
+                                                            {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+
+                                                        </ul>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                        <p></p>
+                                    </>
+                                )
+                                }
+                            </ul>
+                        </>
+                    }
+                    {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 3:</p>}
+                    {
+                        goal3.possibleGoalSelectionState === 'SELECTED' &&
+                        <p>{replaceText(possibleGoals[goal3.possibleGoalsIndex].text, goal3.replacementText, goal3.issue)}</p>
+                    }
+                    {
+                        goal3.possibleGoalSelectionState === 'OTHER' &&
+                        <p>{replaceText(goal3.otherGoal, [])}</p>
+                    }
+                    {
+                        goal3.objectives.length > 0 &&
+                        <>
+                            <p>Goal 3 Objectives: </p>
+                            <ul>
+                                {goal3.objectives.map((objective, index) =>
+                                    <>
+                                        <li>{replaceText(possibleObjectives[objective.possibleObjectiveIndex].text, goal3.replacementText, goal3.issue)}
                                             <p></p>
                                             <ul>
                                                 {objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
@@ -216,31 +310,6 @@ const NoteContent = () => {
                             </ul>
                         </>
                     }
-
-
-                    {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 2:</p>}
-                    {
-                        goal2.possibleGoalSelectionState === 'SELECTED' &&
-                        <p>{replaceText(possibleGoals[goal2.possibleGoalsIndex].text, goal2.replacementText, goal2.issue)}</p>
-                    }
-                    {
-                        goal2.possibleGoalSelectionState === 'OTHER' &&
-                        <p>{replaceText(goal2.otherGoal, [])}</p>
-                    }
-
-
-
-                    {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 3:</p>}
-
-                    {
-                        goal3.possibleGoalSelectionState === 'SELECTED' &&
-                        <p>{replaceText(possibleGoals[goal3.possibleGoalsIndex].text, goal3.replacementText, goal3.issue)}</p>
-                    }
-                    {
-                        goal2.possibleGoalSelectionState === 'OTHER' &&
-                        <p>{replaceText(goal3.otherGoal, [])}</p>
-                    }
-
                 </>
             }
 
@@ -256,201 +325,6 @@ const NoteContent = () => {
                 <p key={intervention}>{intervention}</p>)
             )
             }
-
-
-
-
-
-
-
-
-            {/* 
-            <div><b>Mental Status Exam</b>
-                <ul>
-                    {cognitiveFunctioning &&
-                        <li>
-                            <b>Cognitive Functioning: </b> {cognitiveFunctioning}
-                        </li>
-                    }
-                    {affect &&
-                        <li>
-                            <b>Affect: </b> {affect}
-                        </li>
-                    }
-                    {mood &&
-                        <li>
-                            <b>Mood: </b> {mood}
-                        </li>
-                    }
-                    {interpersonal &&
-                        <li>
-                            <b>Interpersonal: </b> {interpersonal}
-                        </li>
-                    }
-                    {functionalStatus &&
-                        <li>
-                            <b>Functional Status: </b> {functionalStatus}
-                        </li>
-                    }
-                </ul>
-
-                {(noRisk || dangerToOthers || dangerToSelf || otherRisk) &&
-                    <>
-                        <b>Risk Status: </b>
-                        <ul>
-                            {noRisk && <li>No Significant Risk Factors presented</li>}
-                            {dangerToSelf &&
-                                <li>
-                                    Danger to Self
-                                    <ul>
-                                        <li>Risk Level: {dangerToSelfRisk}</li>
-                                        <li>Evidence: {dangerToSelfEvidence}</li>
-                                        <li>Plan: {dangerToSelfPlan}</li>
-                                    </ul>
-                                </li>
-                            }
-                            {dangerToOthers &&
-                                <li>
-                                    Danger to Others
-                                    <ul>
-                                        <li>Risk Level: {dangerToOthersRisk}</li>
-                                        <li>Evidence: {dangerToOthersEvidence}</li>
-                                        <li>Plan: {dangerToOthersPlan}</li>
-                                    </ul>
-                                </li>
-                            }
-                            {otherRisk &&
-                                <li>
-                                    Other Risk
-                                    <ul>
-                                        <li>Information: {otherRiskInformation}</li>
-                                    </ul>
-                                </li>
-                            }
-                        </ul>
-                    </>
-                }
-            </div>
-            {problems &&
-                <div>
-                    <div>
-                        <b>Problems Discussed in the meeting include: </b>
-                    </div>
-                    <pre style={{ width: 504, whiteSpace: "pre-wrap", overflowWrap: "break-word", fontSize: 16, fontWeight: 400, fontFamily: 'sans-serif' }}>{problems}</pre>
-                </div>
-            }
-            {(anxietySymptoms.length || depressionSymptoms.length || ptsdSymptoms.length || otherSymptoms.length > 1 || otherSymptoms[0].length > 0) &&
-                <div>
-                    <b>Symptoms addressed during this meeting include: </b>
-                    <ul>
-                        {anxietySymptoms.length && groupSymptomsTogether ? (
-                            <li>Anxiety Symptoms<ul>
-                                {
-                                    anxietySymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
-                                }
-                            </ul></li>
-                        )
-                            :
-                            anxietySymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
-                        }
-                        {depressionSymptoms.length && groupSymptomsTogether ? (
-                            <li>Depression Symptoms<ul>
-                                {
-                                    depressionSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
-                                }
-                            </ul></li>
-                        )
-                            :
-                            depressionSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
-                        }
-                        {ptsdSymptoms.length && groupSymptomsTogether ? (
-                            <li>PTSD Symptoms<ul>
-                                {
-                                    ptsdSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
-                                }
-                            </ul></li>
-                        )
-                            :
-                            ptsdSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
-                        }
-                        {(otherSymptoms.length > 1 || otherSymptoms[0].length > 0) &&
-                            ((otherSymptoms && groupSymptomsTogether) ? (
-                                <li>Other Symptoms<ul>
-                                    {
-                                        otherSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
-                                    }
-                                </ul></li>
-                            )
-                                :
-                                otherSymptoms.map(symptom => <li key={symptom}>{symptom}</li>)
-
-                            )}
-                    </ul>
-                </div>
-            }
-            {selfCareAffected &&
-                <p>
-                    These symptoms affect {clientInitials || <b>Client's Initials</b>}'s self care.
-                    {selfCareSymptoms.map(s => <span key={s}> {clientInitials} {s}. </span>)}
-                    <span> {otherSelfCareSymptoms} </span>
-                </p>
-            }
-            {occupationAffected &&
-                <p>
-                    These symptoms affect {clientInitials || <b>Client's Initials</b>}'s occupational functioning.
-                    {occupationSymptoms.map(s => <span key={s}> {clientInitials} {s}. </span>)}
-                    <span> {otherOccupationSymptoms} </span>
-                </p>
-            }
-            {academicAffected &&
-                <p>
-                    These symptoms affect {clientInitials || <b>Client's Initials</b>}'s academic functioning.
-                    {academicSymptoms.map(s => <span key={s}> {clientInitials} {s}. </span>)}
-                    <span> {otherAcademicSymptoms} </span>
-                </p>
-            }
-            {interpersonalAffected &&
-                <p>
-                    These symptoms affect {clientInitials || <b>Client's Initials</b>}'s interpersonal functioning.
-                    {interpersonalSymptoms.map(s => <span key={s}> {clientInitials} {s}. </span>)}
-                    <span> {otherInterpersonalSymptoms} </span>
-                </p>
-            }
-            {communitylAffected &&
-                <p>
-                    These symptoms affect {clientInitials || <b>Client's Initials</b>}'s community functioning.
-                    {communitySymptoms.map(s => <span key={s}> {clientInitials} {s}. </span>)}
-                    <span> {otherCommunitySymptoms} </span>
-                </p>
-            }
-            {(interventions.length > 0 || otherInterventions.length > 0) &&
-                <b>In Meeting Interventions:</b>
-            }
-            {interventions.map(intervention => (
-                <p key={intervention.text}>{replaceText(intervention.text, intervention.replacementText)}</p>)
-            )
-            }
-
-            {otherInterventions.map(intervention => (
-                <p key={intervention}>{intervention}</p>)
-            )
-            }
-
-            {(progressions.length > 0 || otherProgressions.length > 1 || otherProgressions[0].length > 0) &&
-                <b>In Meeting Progress:</b>
-            }
-            {progressions.map(progress => (
-                <p key={progress.text}>{replaceText(progress.text, progress.replacementText)}</p>
-            ))}
-            {otherProgressions.map(progress => (
-                <p key={progress}>{progress}</p>
-            ))}
-            <p><b>Recommendation For Moving Forward :</b> {recommendationForMovingForward}</p>
-            {nextMeeting &&
-                <p><b>Next meeting :</b> {new Date(nextMeeting).toLocaleString("en-US", { timeStyle: "full", dateStyle: "full" })}</p>
-            }
-            <pre style={{ width: 504, whiteSpace: "pre-wrap", overflowWrap: "break-word", fontSize: 16, fontWeight: 400, fontFamily: 'sans-serif' }}>{frequencyChangeExplanation}</pre> */}
-
         </div >
     )
 
