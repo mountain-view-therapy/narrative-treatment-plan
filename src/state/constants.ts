@@ -237,13 +237,15 @@ export type PossibleEffectsOnFunctions = PossibleEffectOnSelfCare
 export const possibleGoals = [
     {
         text: "Change the relationship with [ISSUE] to reduce the frequency, intensity and duration of its effects so that [REPLACEMENT1].",
-        prompt: ["[specify how functioning will be no longer/less impaired]"]
+        prompt: ["[how would person served see their life improved]"]
     },
     {
-        text: " Change [Reduce/Increase] frequency of [REPLACEMENT1] in relation to [REPLACEMENT2]",
+        text: " [RPEPLACEMENT1] [REPLACEMENT2] of [ISSUE] in relation to [REPLACEMENT3] so that [REPLACEMENT4].",
         prompt: [
-            "[specific symptom of diagnosis]",
-            "[specify how function will be no longer/less impaired]",
+            "[Reduce/Increase]",
+            "[frequency/intensity/duration]",
+            "[specify where issue effects persons life: work, community, personal relationships]",
+            "[how would person served see their life improved]",
         ]
     },
 ]
