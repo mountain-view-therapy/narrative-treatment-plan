@@ -4,18 +4,12 @@ import TurndownService from 'turndown'
 import { renderToString } from "react-dom/server";
 import NoteContent from './NoteContent';
 import { observer } from 'mobx-react-lite';
-import { getState } from '../state/provider';
 
 const turndownService = new TurndownService()
 
 const CopyToClipboardButton = () => {
     const [open, setOpen] = useState(false)
-    // const { meetingInformation: {
-    //     meetingLogistics: {
-    //         startTime,
-    //         endTime,
-    //     }
-    // } } = getState();
+
     const handleClick = () => {
         setOpen(true)
         const html = renderToString(<NoteContent />)

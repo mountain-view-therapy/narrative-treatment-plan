@@ -6,12 +6,12 @@ import DiagnosticModel from "./DiagnosticModel.mst"
 import FunctioningModel from "./Functioning.mst"
 import GoalModel from "./GoalModel.mst"
 import InterventionModel from "./InterventionModel.mst"
-import MeetingLogisticsModel from "./MeetingLogisticsModel.mst"
+import PlanLogisticsModel from "./PlanLogisticsModel.mst"
 
 
 
 const TreatmentPlanModel = types.model('TreatmentPlanModel', {
-    meetingLogistics: MeetingLogisticsModel,
+    planLogistics: PlanLogisticsModel,
     diagnostics: DiagnosticModel,
     functioning: FunctioningModel,
     interventions: types.array(InterventionModel),

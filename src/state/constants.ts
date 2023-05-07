@@ -117,7 +117,16 @@ export const possibleEffectsOnFunctions = {
 export const possibleObjectives =
     [
         {
-            text: "[CLIENT] will demonstrate a clear vision for how [ISSUE] operates in their life. We will know this has been achieved when we have observed some of the following; [CLIENT]  uses externalized language consistently in meetings, [CLIENT] has given the problem an experience near name, [CLIENT] speaks about the effects and tactics of [ISSUE], [CLIENT] speaks about their history with [ISSUE], [CLIENT] identified and speaks about people and situations that support [ISSUE], has identified and speaks about the cultural discourses that support [ISSUE], [CLIENT] can name and richly describe their values and preferences in relation to [ISSUE] and/or can identify and speak about some action they have taken to counter [ISSUE].",
+            title: "[CLIENT] will demonstrate a clear vision for how [ISSUE] operates in their life. We will know this has been achieved when we have observed some of the following",
+            objectiveText: [
+                "[CLIENT]  uses externalized language consistently in meetings",
+                "[CLIENT] has given the problem an experience near name",
+                "[CLIENT] speaks about the effects and tactics of [ISSUE]",
+                "[CLIENT] speaks about their history with [ISSUE]",
+                "[CLIENT] identified and speaks about people and situations that support [ISSUE]",
+                "[CLIENT] has identified and speaks about the cultural discourses that support [ISSUE]",
+                "[CLIENT] can name and richly describe their values and preferences in relation to [ISSUE] and/or can identify and speak about some action they have taken to counter [ISSUE].",
+            ],
             options: {
                 "No Progress": {
                     text: "[CLIENT] has not progressed on this objective",
@@ -152,7 +161,15 @@ export const possibleObjectives =
             },
         },
         {
-            text: "[CLIENT] will develop a vision, or preferred narrative, for their life that has reduced the presence or role of [ISSUE]. We will know that this has been achieved when we have observed some of the following;  [CLIENT] speaks richly about times when the problem has less influence, [CLIENT] identifies actions they have taken that fit with their preferred narrative, [CLIENT]  identifies different situations and people who will support their preferred narrative, [CLIENT] identifies past experiences that fit with their preferred narrative, [CLIENT]  has considered how their preferred narrative fits with their cultural context, [CLIENT] will have developed and practiced strategies to counter [ISSUE].",
+            title: "[CLIENT] will develop a vision, or preferred narrative, for their life that has reduced the presence or role of [ISSUE]. We will know that this has been achieved when we have observed some of the following",
+            objectiveText: [
+                "[CLIENT] speaks richly about times when the problem has less influence",
+                "[CLIENT] identifies actions they have taken that fit with their preferred narrative",
+                "[CLIENT]  identifies different situations and people who will support their preferred narrative",
+                "[CLIENT] identifies past experiences that fit with their preferred narrative",
+                "[CLIENT]  has considered how their preferred narrative fits with their cultural context",
+                "[CLIENT] will have developed and practiced strategies to counter [ISSUE].",
+            ],
             options: {
                 "No Progress": {
                     text: "[CLIENT] has not progressed on this objective",
@@ -183,7 +200,14 @@ export const possibleObjectives =
             }
         },
         {
-            text: "[CLIENT] will maintain a connection with their preferred narrative that reduces the presence and/or role of the [ISSUE] in their life. We will know that this has been achieved when we have observed some of the following; [CLIENT] consistently uses their strategies for countering [ISSUE], [CLIENT] regularly reports in meetings about how they have countered [ISSUE], [CLIENT] reports they have recruited people to support their preferred narrative, [ISSUE] takes up less space in meetings, [CLIENT] speaks about themselves through the lens of their preferred story (as appose to the lens of [ISSUE]).",
+            title: "[CLIENT] will maintain a connection with their preferred narrative that reduces the presence and/or role of the [ISSUE] in their life. We will know that this has been achieved when we have observed some of the following",
+            objectiveText: [
+                "[CLIENT] consistently uses their strategies for countering [ISSUE]",
+                "[CLIENT] regularly reports in meetings about how they have countered [ISSUE]",
+                "[CLIENT] reports they have recruited people to support their preferred narrative",
+                "[ISSUE] takes up less space in meetings",
+                "[CLIENT] speaks about themselves through the lens of their preferred story (as opposed to the lens of [ISSUE]).",
+            ],
             options: {
                 "No Progress": {
                     text: "[CLIENT] has not progressed on this objective",
@@ -238,9 +262,9 @@ export const possibleGoals = [
     {
         text: "Change the relationship with [ISSUE] to reduce the frequency, intensity and duration of its effects relation to [LIFE DOMAIN] so that [LIFE IMPROVEMENT].",
         prompt: [
-        "[how would person served see their life improved]",
-        "[specify where issue effects persons life: work, community, personal relationships]",
-    ]
+            "[how would person served see their life improved]",
+            "[specify where issue effects persons life: work, community, personal relationships]",
+        ]
     },
     {
         text: " [REDUCE/INCREASE] [FREQUENCY/INTENSITY/DURATION] of [ISSUE] in relation to [LIFE DOMAIN] so that [LIFE IMPROVEMENT].",
@@ -365,7 +389,7 @@ export type PossibleRecommendationsForMovingForward = typeof possibleRecommendat
 
 export const initialState = {
     treatmentPlan: {
-        meetingLogistics: {
+        planLogistics: {
             clientInitials: "",
             firstDateOfService: new Date(),
             modalityPlanned: modalities[0],

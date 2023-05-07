@@ -1,19 +1,12 @@
 import { Checkbox, FormControlLabel, FormLabel, TextField, Typography } from '@mui/material'
 import { Box, Container, Stack } from '@mui/system';
 import { observer } from 'mobx-react-lite';
-import {
-  PossibleEffectOnAcademic,
-  PossibleEffectOnCommunity,
-  PossibleEffectOnInterpersonal,
-  PossibleEffectOnOccupation,
-  PossibleEffectOnSelfCare,
-  possibleEffectsOnFunctions,
-} from '../../state/constants';
+import { possibleEffectsOnFunctions } from '../../state/constants';
 import { getState } from '../../state/provider';
 
 const Functioning = () => {
   const { treatmentPlan: {
-    meetingLogistics: {
+    planLogistics: {
       clientInitials,
       setClientInitials,
     },

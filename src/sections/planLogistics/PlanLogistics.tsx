@@ -1,30 +1,26 @@
-import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, TextField, Typography } from '@mui/material'
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography } from '@mui/material'
 import { Box, Container, Stack } from '@mui/system';
 import { observer } from 'mobx-react-lite';
 import { getState } from '../../state/provider';
-import { frequency, length, modalities } from '../../state/constants';
+import { length, modalities } from '../../state/constants';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
 
-const MeetingLogistics = () => {
+const PlanLogistics = () => {
   const { treatmentPlan: {
-    meetingLogistics: {
+    planLogistics: {
       clientInitials,
       setClientInitials,
       firstDateOfService,
       setFirstDateOfService,
       modalityPlanned,
       setModalityPlanned,
-      meetingFrequency,
-      setMeetingFrequency,
       treatmentLength,
       setTreatmentLength,
       otherTreatmentLength,
       setOtherTreatmentLength,
-      otherMeetingFrequency,
-      setOtherMeetingFrequency,
     },
   }
   } = getState();
@@ -35,7 +31,7 @@ const MeetingLogistics = () => {
     < Container >
       <Box>
         <Stack justifyContent='center' alignItems='center' flexDirection='row' border='green' margin={2}>
-          <Typography fontWeight={800} fontSize={24}>Meeting Logistics</Typography>
+          <Typography fontWeight={800} fontSize={24}>Plan Logistics</Typography>
         </Stack>
       </Box>
       <Stack flexDirection='column' spacing={5} paddingBottom={5}>
@@ -86,7 +82,7 @@ const MeetingLogistics = () => {
 
 
 
-        <FormControl>
+        {/* <FormControl>
           <FormLabel id="meeting-frequency">Meeting Frequency</FormLabel>
           <RadioGroup
             aria-labelledby="meeting-frequency"
@@ -103,7 +99,7 @@ const MeetingLogistics = () => {
         </FormControl>
         {meetingFrequency === 'Other' &&
           <TextField size='small' label='Other Treatment Length' value={otherMeetingFrequency} onChange={(e) => setOtherMeetingFrequency(e.target.value)} />
-        }
+        } */}
 
 
         <FormControl>
@@ -129,4 +125,4 @@ const MeetingLogistics = () => {
   )
 }
 
-export default observer(MeetingLogistics);
+export default observer(PlanLogistics);

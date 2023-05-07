@@ -4,7 +4,7 @@ import {
     frequency, Frequency, length, Length,
 } from "../state/constants"
 
-const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
+const PlanLogisticsModel = types.model('PlanLogisticsModel', {
     clientInitials: types.string,
     firstDateOfService: types.Date,
     modalityPlanned: types.enumeration('modalityPlanned', modalities),
@@ -40,7 +40,7 @@ const MeetingLogisticsModel = types.model('MeetingLogisticsModel', {
     }
 })
 
-export default MeetingLogisticsModel;
+export default PlanLogisticsModel;
 
 
-export interface MeetingLogistics extends Instance<typeof MeetingLogisticsModel> { }
+export interface PlanLogistics extends Instance<typeof PlanLogisticsModel> { }

@@ -1,8 +1,5 @@
 import { Instance, types } from "mobx-state-tree"
 
-// export const ProgressStates = ["Unselected", "No Progress", "Still Working", "Finished"]
-// export type ProgressState = typeof ProgressStates[number]
-
 const ObjectiveModel = types.model('ObjectiveModel', {
     possibleObjectiveIndex: types.number,
     replacementText: types.array(types.string),
@@ -17,10 +14,6 @@ const ObjectiveModel = types.model('ObjectiveModel', {
 }).actions((self) => {
     return {
 
-        // setNoProgressChecked(value: boolean): void {
-        //     console.log("setNoProgressChecked: ", value)
-        //     self.noProgressChecked = value
-        // },
     }
 })
 

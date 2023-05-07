@@ -1,4 +1,4 @@
-import { Instance, clone, destroy, detach, getSnapshot, types } from "mobx-state-tree"
+import { Instance, getSnapshot, types } from "mobx-state-tree"
 import ObjectiveModel from "./ObjectiveModel.mst"
 
 export const GoalSelectionStates = ["UNSELECTED", "SELECTED", "OTHER"]

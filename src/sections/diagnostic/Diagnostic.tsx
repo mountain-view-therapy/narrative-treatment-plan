@@ -1,4 +1,4 @@
-import { Button, Checkbox, Dialog, FormControl, FormControlLabel, FormLabel, NativeSelect, Select, TextField, Typography } from '@mui/material'
+import { Button, Dialog, FormControl, NativeSelect, TextField, Typography } from '@mui/material'
 import { Box, Container, Stack } from '@mui/system';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
@@ -8,10 +8,6 @@ import { getState } from '../../state/provider';
 
 const Diagnostic = () => {
   const { treatmentPlan: {
-    meetingLogistics: {
-      clientInitials,
-      setClientInitials,
-    },
     diagnostics: {
       diagnoses,
       addNewDiagnosis,

@@ -3,7 +3,6 @@ import { observer } from "mobx-react-lite";
 import { PossibleObjective, PossibleProgression } from "../../state/constants";
 import { getState } from "../../state/provider";
 import { IGoal } from "../../models/GoalModel.mst";
-import { IObjective } from "../../models/ObjectiveModel.mst";
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -20,7 +19,7 @@ const Objective = ({ goal, objective, index }: Props) => {
     const replaceText = (text: string) => {
         return text
             .replace(/\[ISSUE\]/g, goal.issue || '[ISSUE]')
-            .replace(/\[CLIENT\]/g, treatmentPlan.meetingLogistics.clientInitials || '[CLIENT]')
+            .replace(/\[CLIENT\]/g, treatmentPlan.planLogistics.clientInitials || '[CLIENT]')
             .replace('[REPLACEMENT1]', goal.replacementText[0] || '[REPLACEMENT1]')
             .replace('[REPLACEMENT2]', goal.replacementText[1] || '[REPLACEMENT2]')
     }
@@ -37,7 +36,7 @@ const Objective = ({ goal, objective, index }: Props) => {
                 <Stack>
                     <Typography
                         color={goal.isObjectiveChecked(index) ? "black" : "gray"}>
-                        {replaceText(objective.text)}
+                        {replaceText(objective.title)}
                     </Typography>
                     {
                         goal.updatingGoal &&

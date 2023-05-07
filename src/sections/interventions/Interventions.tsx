@@ -8,7 +8,7 @@ import { getState } from '../../state/provider';
 const Interventions = () => {
   const {
     treatmentPlan: {
-      meetingLogistics: {
+      planLogistics: {
         clientInitials,
         setClientInitials,
       },

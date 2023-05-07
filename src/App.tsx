@@ -2,7 +2,7 @@ import { AppBar, Box, Toolbar, Stack, Tab, Tabs } from "@mui/material";
 import { Container } from "@mui/system";
 import { useState } from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import MeetingLogistics from "./sections/meetingLogistics/MeetingLogistics";
+import PlanLogistics from "./sections/planLogistics/PlanLogistics";
 import Note from "./sections/note/Note";
 import Diagnostic from "./sections/diagnostic/Diagnostic";
 import Functioning from "./sections/functioning/Functioning";
@@ -13,8 +13,8 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route index element={<MeetingLogistics />} />
-        <Route path="meeting-logistics" element={<MeetingLogistics />} />
+        <Route index element={<PlanLogistics />} />
+        <Route path="plan-logistics" element={<PlanLogistics />} />
         <Route path="diagnostic" element={<Diagnostic />} />
         <Route path="effects-on-functioning" element={<Functioning />} />
         <Route path="goals" element={<Goals />} />
@@ -26,7 +26,7 @@ function App() {
 }
 
 const Layout = () => {
-  const [currentTab, setCurrentTab] = useState('meeting-logistics')
+  const [currentTab, setCurrentTab] = useState('plan-logistics')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setCurrentTab(newValue)
@@ -49,10 +49,10 @@ const Layout = () => {
                   TabIndicatorProps={{ style: { background: 'white' } }}
                 >
                   <Tab
-                    value='meeting-logistics'
-                    label="Meeting Logistics"
+                    value='plan-logistics'
+                    label="Plan Logistics"
                     component={Link}
-                    to='meeting-logistics'
+                    to='plan-logistics'
                     style={{ fontSize: '12px', color: 'white' }}
                   />
 
@@ -111,7 +111,7 @@ const NoMatch = () => {
     <div>
       <h2>Nothing to see here!</h2>
       <p>
-        <Link to={'/meeting-logistics'}>Go to the home page</Link>
+        <Link to={'/plan-logistics'}>Go to the home page</Link>
       </p>
     </div >
   );

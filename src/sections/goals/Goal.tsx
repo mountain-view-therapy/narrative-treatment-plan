@@ -15,7 +15,7 @@ const Goal = ({ goal, possibleGoal, index }: Props) => {
 
 
     const { treatmentPlan: {
-        meetingLogistics: {
+        planLogistics: {
             clientInitials,
         }
     } } = getState()
@@ -29,7 +29,7 @@ const Goal = ({ goal, possibleGoal, index }: Props) => {
     }
 
     return (
-        <Stack flexDirection="row" justifyContent="start" alignItems="center">
+        <Stack flexDirection="row" justifyContent="start" alignItems="start" marginY={2}>
             <Checkbox
                 checked={goal.possibleGoalSelectionState === "SELECTED" && goal.possibleGoalsIndex === index}
                 onChange={(e) => goal.setCheckedGoal(index, e.target.checked)}

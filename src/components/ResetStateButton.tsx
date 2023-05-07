@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { observer } from 'mobx-react-lite';
 import { getState } from '../state/provider';
 import { Box, Stack } from '@mui/system';
+import { useNavigate } from "react-router-dom";
 
 
 const ResetStateButton = () => {
@@ -10,11 +11,15 @@ const ResetStateButton = () => {
     const { resetNoteState } = getState()
     const [snackBarOpen, setSnackbarOpen] = useState(false)
     const [dialogOpen, setDialogOpen] = useState(false)
+    const nav = useNavigate();
+
 
     const handleClick = () => {
         resetNoteState()
         setSnackbarOpen(true)
         setDialogOpen(false)
+        nav("/plan-logistics");
+        window.location.reload();
     }
 
     return (

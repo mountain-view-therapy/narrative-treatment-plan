@@ -1,18 +1,17 @@
 import { observer } from "mobx-react-lite"
 import { getState } from "../state/provider"
 import { possibleGoals, possibleObjectives, possibleProgressions } from "../state/constants"
+import { Typography } from "@mui/material"
 
 const NoteContent = () => {
 
     const { treatmentPlan: {
-        meetingLogistics: {
+        planLogistics: {
             clientInitials,
             firstDateOfService,
             modalityPlanned,
-            meetingFrequency,
             treatmentLength,
             otherTreatmentLength,
-            otherMeetingFrequency,
         },
         diagnostics: {
             diagnoses
@@ -54,31 +53,9 @@ const NoteContent = () => {
         return text.replace('[CLIENT]', clientInitials)
     }
 
-
-    // const replaceText = (text: string) => {
-    //     return text
-    //         .replace(/\[ISSUE\]/g, currentGoal.issue || '[ISSUE]')
-    //         .replace(/\[CLIENT\]/g, clientInitials || '[CLIENT]')
-    //         .replace('[REPLACEMENT1]', currentGoal.replacementText[0] || '[REPLACEMENT1]')
-    //         .replace('[REPLACEMENT2]', currentGoal.replacementText[1] || '[REPLACEMENT2]')
-    // }
-
-    // if (!startTime || !endTime) {
-    //     return (
-    //         <Box>
-    //             <Typography>Please fill out all necessary fields</Typography>
-    //             <Typography>Missing Fields</Typography>
-    //             <ul>
-    //                 {!startTime &&
-    //                     <li>Start Time in <a href="/narrative-treatment-plan/#/meeting-logistics">Meeting Logistics tab</a></li>
-    //                 }
-    //                 {!endTime &&
-    //                     <li>End Time in <a href="/narrative-treatment-plan/#/meeting-logistics">Meeting Logistics tab</a></li>
-    //                 }
-    //             </ul>
-    //         </Box>
-    //     )
-    // }
+    const formatObjectiveText = (text: string) => {
+        return text.replace(';', '<ul><li>').replace(',', '</li><li>') + "</li></ul>"
+    }
 
     return (
         <div>
@@ -99,16 +76,12 @@ const NoteContent = () => {
             </div>
 
             <div>
-                <b>Meeting Frequency: </b>
-                {meetingFrequency === 'Other' ? otherMeetingFrequency : meetingFrequency}
-            </div>
-
-            <div>
                 <b>Estimated Length of Treatment:</b>
                 {treatmentLength === 'Other' ? otherTreatmentLength : treatmentLength}
             </div>
 
             <div>
+                <p> </p>
                 <b>Diagnoses</b>
                 {diagnoses.map(diagnosis => <>
                     <p>{diagnosis.otherDiagnosisName || diagnosis.diagnosisName}</p>
@@ -125,9 +98,7 @@ const NoteContent = () => {
                 )}
             </div>
             <div>
-                {(selfCareAffected || occupationAffected || academicAffected || interpersonalAffected || communitylAffected) &&
-                    <b>Effects on Functioning</b>
-                }
+
                 {selfCareAffected &&
                     <p>
                         These symptoms affect {clientInitials || <b>Client's Initials</b>}'s self care.
@@ -181,40 +152,44 @@ const NoteContent = () => {
                         goal1.objectives.length > 0 &&
                         <>
                             <p>Goal 1 Objectives: </p>
-                            <ul>
-                                {goal1.objectives.map((objective, index) =>
-                                    <>
-                                        <li>{replaceText(possibleObjectives[objective.possibleObjectiveIndex].text, goal1.replacementText, goal1.issue)}
-                                            <p></p>
-                                            <ul>
-                                                {objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
-                                                {objective.stillWorkingChecked &&
-                                                    <li>
-                                                        {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
-                                                        <ul>
-                                                            {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
-                                                        </ul>
-                                                    </li>
-                                                }
-                                                {objective.finishedChecked &&
-                                                    <li>
-                                                        {replaceText(possibleObjectives[index].options["Finished"].text, [])}
-                                                        <ul>
-                                                            {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+                            {goal1.objectives.map((objective, index) =>
+                                <>
+                                    {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal1.replacementText, goal1.issue)}
+                                    <ul>
+                                        {!goal1.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li>{replaceText(text, [],)}</li>)}
+                                    </ul>
+                                    <ul>
+                                        {!goal2.updatingGoal && objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
+                                        {!goal2.updatingGoal && objective.stillWorkingChecked &&
+                                            <li>
+                                                {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
+                                                <ul>
+                                                    {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
-                                                        </ul>
-                                                    </li>
-                                                }
-                                            </ul>
-                                        </li>
-                                        <p></p>
-                                    </>
-                                )
-                                }
-                            </ul>
+                                                </ul>
+                                            </li>
+                                        }
+                                        {!goal2.updatingGoal && objective.finishedChecked &&
+                                            <li>
+                                                {replaceText(possibleObjectives[index].options["Finished"].text, [])}
+                                                <ul>
+                                                    {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+
+                                                </ul>
+                                            </li>
+                                        }
+                                    </ul>
+
+                                    <p></p>
+                                </>
+                            )
+                            }
+
                         </>
                     }
+                    {goal1.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal1.estimatedCompletionDate.toDateString()}</p>}
+
                     {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 2:</p>}
                     {
                         goal2.possibleGoalSelectionState === 'SELECTED' &&
@@ -228,40 +203,41 @@ const NoteContent = () => {
                         goal2.objectives.length > 0 &&
                         <>
                             <p>Goal 2 Objectives: </p>
-                            <ul>
-                                {goal2.objectives.map((objective, index) =>
-                                    <>
-                                        <li>{replaceText(possibleObjectives[objective.possibleObjectiveIndex].text, goal2.replacementText, goal2.issue)}
-                                            <p></p>
-                                            <ul>
-                                                {objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
-                                                {objective.stillWorkingChecked &&
-                                                    <li>
-                                                        {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
-                                                        <ul>
-                                                            {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+                            {goal2.objectives.map((objective, index) =>
+                                <>
+                                    {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal2.replacementText, goal2.issue)}
+                                    <ul>
+                                        {!goal2.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li>{replaceText(text, [],)}</li>)}
+                                    </ul>
+                                    <ul>
+                                        {!goal2.updatingGoal && objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
+                                        {!goal2.updatingGoal && objective.stillWorkingChecked &&
+                                            <li>
+                                                {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
+                                                <ul>
+                                                    {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
-                                                        </ul>
-                                                    </li>
-                                                }
-                                                {objective.finishedChecked &&
-                                                    <li>
-                                                        {replaceText(possibleObjectives[index].options["Finished"].text, [])}
-                                                        <ul>
-                                                            {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+                                                </ul>
+                                            </li>
+                                        }
+                                        {!goal2.updatingGoal && objective.finishedChecked &&
+                                            <li>
+                                                {replaceText(possibleObjectives[index].options["Finished"].text, [])}
+                                                <ul>
+                                                    {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
-                                                        </ul>
-                                                    </li>
-                                                }
-                                            </ul>
-                                        </li>
-                                        <p></p>
-                                    </>
-                                )
-                                }
-                            </ul>
+                                                </ul>
+                                            </li>
+                                        }
+                                    </ul>
+
+                                </>
+                            )
+                            }
                         </>
                     }
+                    {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal2.estimatedCompletionDate.toDateString()}</p>}
+
                     {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 3:</p>}
                     {
                         goal3.possibleGoalSelectionState === 'SELECTED' &&
@@ -275,41 +251,41 @@ const NoteContent = () => {
                         goal3.objectives.length > 0 &&
                         <>
                             <p>Goal 3 Objectives: </p>
-                            <ul>
-                                {goal3.objectives.map((objective, index) =>
-                                    <>
-                                        <li>{replaceText(possibleObjectives[objective.possibleObjectiveIndex].text, goal3.replacementText, goal3.issue)}
-                                            <p></p>
-                                            <ul>
-                                                {objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
-                                                {objective.stillWorkingChecked &&
-                                                    <li>
-                                                        {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
-                                                        <ul>
-                                                            {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+                            {goal3.objectives.map((objective, index) =>
+                                <>
+                                    {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal3.replacementText, goal3.issue)}
+                                    <ul>
+                                        {!goal3.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li>{replaceText(text, [],)}</li>)}
+                                    </ul>
+                                    <ul>
+                                        {!goal3.updatingGoal && objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
+                                        {!goal3.updatingGoal && objective.stillWorkingChecked &&
+                                            <li>
+                                                {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
+                                                <ul>
+                                                    {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
-                                                        </ul>
-                                                    </li>
-                                                }
-                                                {objective.finishedChecked &&
-                                                    <li>
-                                                        {replaceText(possibleObjectives[index].options["Finished"].text, [])}
-                                                        <ul>
-                                                            {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+                                                </ul>
+                                            </li>
+                                        }
+                                        {!goal3.updatingGoal && objective.finishedChecked &&
+                                            <li>
+                                                {replaceText(possibleObjectives[index].options["Finished"].text, [])}
+                                                <ul>
+                                                    {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
-                                                        </ul>
-                                                    </li>
-                                                }
-                                            </ul>
-                                        </li>
-                                        <p></p>
-                                    </>
-                                )
-                                }
+                                                </ul>
+                                            </li>
+                                        }
+                                    </ul>
 
-                            </ul>
+                                </>
+                            )
+                            }
                         </>
                     }
+                    {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal3.estimatedCompletionDate.toDateString()}</p>}
+
                 </>
             }
 

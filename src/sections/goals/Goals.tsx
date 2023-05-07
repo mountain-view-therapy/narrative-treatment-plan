@@ -15,9 +15,6 @@ const Goals = () => {
         goal1,
         goal2,
         goal3,
-        meetingLogistics: {
-            clientInitials,
-        }
     } } = getState()
 
     const [currentGoal, setCurrentGoal] = useState(goal1)
@@ -95,6 +92,8 @@ const Goals = () => {
             <Box padding={2}>
                 <>
                     <Stack flexDirection="row" justifyContent="space-evenly">
+                        <TextField label="Name of Issue" value={currentGoal.issue} onChange={(e) => currentGoal.setIssue(e.target.value)} />
+
                         <Stack flexDirection="row" justifyContent="space-evenly" alignItems="center">
                             <Typography marginRight={3}>Is this an update?</Typography>
                             <RadioGroup
@@ -117,7 +116,6 @@ const Goals = () => {
                                 onChange={(date) => currentGoal.setInitiatedAt(date || new Date())}
                             />
                         </Stack>
-                        <TextField label="Name of Issue" value={currentGoal.issue} onChange={(e) => currentGoal.setIssue(e.target.value)} />
 
                     </Stack>
                     <Box paddingTop={1}>
