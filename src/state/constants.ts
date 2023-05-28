@@ -196,6 +196,7 @@ export const possibleObjectives =
                         { text: "[CLIENT] reports they have recruited people to support their preferred narrative including [REPLACEMENT1].", prompt: "name people" },
                         { text: "[ISSUE] takes up less space in meetings and is replaced by accounts of living their preferred story. " },
                         { text: "[CLIENT] speaks about themselves through the lens of their preferred story. " },
+                    ],
                 },
                 "Finished": {
                     text: "All that stuff",
