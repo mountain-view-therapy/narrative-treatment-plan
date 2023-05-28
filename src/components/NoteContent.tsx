@@ -87,7 +87,7 @@ const NoteContent = () => {
                     <p>{diagnosis.otherDiagnosisName || diagnosis.diagnosisName}</p>
                     <ul>
                         {diagnosis.symptoms.map(symptom =>
-                            <li>
+                            <li key={symptom}>
                                 {symptom}
                             </li>
                         )
@@ -142,7 +142,7 @@ const NoteContent = () => {
                     {goal1.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 1:</p>}
                     {
                         goal1.possibleGoalSelectionState === 'SELECTED' &&
-                        <p>{replaceText(possibleGoals[goal1.possibleGoalsIndex].text, goal1.replacementText, goal1.issue)}</p>
+                        <p>{replaceText(possibleGoals[goal1.possibleGoalsIndex].text, goal1.replacementText[0], goal1.issue)}</p>
                     }
                     {
                         goal1.possibleGoalSelectionState === 'OTHER' &&
@@ -155,7 +155,7 @@ const NoteContent = () => {
 
                             {goal1.objectives.map((objective, index) =>
                                 <>
-                                    {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal1.replacementText, goal1.issue)}
+                                    {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal1.replacementText[0], goal1.issue)}
                                     <ul>
                                         {!goal1.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li>{replaceText(text, [],)}</li>)}
                                     </ul>
@@ -193,7 +193,7 @@ const NoteContent = () => {
                     {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 2:</p>}
                     {
                         goal2.possibleGoalSelectionState === 'SELECTED' &&
-                        <p>{replaceText(possibleGoals[goal2.possibleGoalsIndex].text, goal2.replacementText, goal2.issue)}</p>
+                        <p>{replaceText(possibleGoals[goal2.possibleGoalsIndex].text, goal2.replacementText[0], goal2.issue)}</p>
                     }
                     {
                         goal2.possibleGoalSelectionState === 'OTHER' &&
@@ -205,7 +205,7 @@ const NoteContent = () => {
                             <p>Goal 2 Objectives: </p>
                             {goal2.objectives.map((objective, index) =>
                                 <>
-                                    {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal2.replacementText, goal2.issue)}
+                                    {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal2.replacementText[0], goal2.issue)}
                                     <ul>
                                         {!goal2.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li>{replaceText(text, [],)}</li>)}
                                     </ul>
@@ -241,7 +241,7 @@ const NoteContent = () => {
                     {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 3:</p>}
                     {
                         goal3.possibleGoalSelectionState === 'SELECTED' &&
-                        <p>{replaceText(possibleGoals[goal3.possibleGoalsIndex].text, goal3.replacementText, goal3.issue)}</p>
+                        <p>{replaceText(possibleGoals[goal3.possibleGoalsIndex].text, goal3.replacementText[0], goal3.issue)}</p>
                     }
                     {
                         goal3.possibleGoalSelectionState === 'OTHER' &&
@@ -253,7 +253,7 @@ const NoteContent = () => {
                             <p>Goal 3 Objectives: </p>
                             {goal3.objectives.map((objective, index) =>
                                 <>
-                                    {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal3.replacementText, goal3.issue)}
+                                    {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal3.replacementText[0], goal3.issue)}
                                     <ul>
                                         {!goal3.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li>{replaceText(text, [],)}</li>)}
                                     </ul>

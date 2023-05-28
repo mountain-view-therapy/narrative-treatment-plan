@@ -20,8 +20,8 @@ const Objective = ({ goal, objective, index }: Props) => {
         return text
             .replace(/\[ISSUE\]/g, goal.issue || '[ISSUE]')
             .replace(/\[CLIENT\]/g, treatmentPlan.planLogistics.clientInitials || '[CLIENT]')
-            .replace('[REPLACEMENT1]', goal.replacementText[0] || '[REPLACEMENT1]')
-            .replace('[REPLACEMENT2]', goal.replacementText[1] || '[REPLACEMENT2]')
+            .replace('[REPLACEMENT1]', goal.replacementText[0][0] || '[REPLACEMENT1]')
+            .replace('[REPLACEMENT2]', goal.replacementText[1][0] || '[REPLACEMENT2]')
     }
 
     const checked = Boolean(goal.objectives.find(selected => index === selected.possibleObjectiveIndex))

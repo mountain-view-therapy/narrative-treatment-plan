@@ -9,7 +9,7 @@ const GoalModel = types.model('GoalModel', {
     issue: types.string,
     possibleGoalSelectionState: types.enumeration(GoalSelectionStates),
     otherGoal: types.string,
-    replacementText: types.array(types.string),
+    replacementText: types.array(types.array(types.string)),
     active: false,
     initiatedAt: types.Date,
     estimatedCompletionDate: types.Date,
@@ -41,8 +41,8 @@ const GoalModel = types.model('GoalModel', {
                 self.possibleGoalSelectionState = "UNSELECTED"
             }
         },
-        setReplacementText(text: string, index: number): void {
-            self.replacementText[index] = text
+        setReplacementText(text: string, possibleGoalIndex: number, replacementTextIndex: number): void {
+            self.replacementText[possibleGoalIndex][replacementTextIndex] = text
         },
         setInitiatedAt(date: Date): void {
             self.initiatedAt = date
