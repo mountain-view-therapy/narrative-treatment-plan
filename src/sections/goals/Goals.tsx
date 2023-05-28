@@ -128,25 +128,20 @@ const Goals = () => {
                                         onChange={(e) => currentGoal.setCheckedGoal(0, e.target.checked)}
 
                                     />
-                                    <Stack flexDirection="column" marginLeft={5}>
+                                    <Stack flexDirection="column" marginLeft={5} width={10000}>
 
                                         <Stack flexDirection="row" alignItems="center">
-                                            <Typography marginRight={1} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>Change the relationship with </Typography>
-                                            <TextField
-                                                disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 0}
-                                                value={currentGoal.possibleGoalsIndex !== 0 ? "" : currentGoal.replacementText[0][0]}
-                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 0,0)}
-                                                placeholder={possibleGoals[0].prompt[0]}
-                                            />
+                                            <Typography marginRight={1} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>Change the relationship with {currentGoal.issue}</Typography>
                                         </Stack>
                                         <Stack flexDirection="row" alignItems="center">
                                             <Typography marginRight={1} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>to reduce the frequency, intensity and duration of its effects relation to </Typography>
 
                                             <TextField
+                                                fullWidth
                                                 disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 0}
-                                                value={currentGoal.possibleGoalsIndex !== 0 ? "" : currentGoal.replacementText[0][1]}
-                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 0,1)}
-                                                placeholder={possibleGoals[0].prompt[1]}
+                                                value={currentGoal.possibleGoalsIndex !== 0 ? "" : currentGoal.replacementText[0][0]}
+                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 0, 0)}
+                                                placeholder={possibleGoals[0].prompt[0]}
                                             />
                                         </Stack>
                                         <Stack flexDirection="row" alignItems="center">
@@ -154,10 +149,11 @@ const Goals = () => {
 
 
                                             <TextField
+                                                fullWidth
                                                 disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 0}
-                                                value={currentGoal.possibleGoalsIndex !== 0 ? "" : currentGoal.replacementText[0][2]}
-                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 0,2)}
-                                                placeholder={possibleGoals[0].prompt[2]}
+                                                value={currentGoal.possibleGoalsIndex !== 0 ? "" : currentGoal.replacementText[0][1]}
+                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 0, 1)}
+                                                placeholder={possibleGoals[0].prompt[1]}
                                             />
                                             <Typography color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>.</Typography>
                                         </Stack>
@@ -172,48 +168,45 @@ const Goals = () => {
                                         onChange={(e) => currentGoal.setCheckedGoal(1, e.target.checked)}
 
                                     />
-                                    <Stack flexDirection="column" marginLeft={5} spacing={1}>
+                                    <Stack flexDirection="column" marginLeft={5} spacing={1} width={10000}>
 
                                         <Stack flexDirection="row" alignItems="center" justifyContent="space-evenly">
                                             <TextField
+                                                fullWidth
                                                 disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 1}
                                                 value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][0]}
-                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1,0)}
+                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1, 0)}
                                                 placeholder={possibleGoals[1].prompt[0]}
                                             />
                                             <Typography marginLeft={5}> </Typography>
                                             <TextField
+                                                fullWidth
                                                 disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 1}
                                                 value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][1]}
-                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1,1)}
+                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1, 1)}
                                                 placeholder={possibleGoals[1].prompt[1]}
                                             />
                                         </Stack>
                                         <Stack flexDirection="row" alignItems="center">
-                                            <Typography marginRight={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>of</Typography>
-                                            <TextField
-                                                disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 1}
-                                                value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][2]}
-                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1,2)}
-                                                placeholder={possibleGoals[1].prompt[2]}
-                                            />
-                                        </Stack>
-                                        <Stack flexDirection="row" alignItems="center">
+                                            <Typography marginRight={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>of {currentGoal.issue}</Typography>
+
                                             <Typography marginRight={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>in relation to</Typography>
                                             <TextField
+                                                fullWidth
                                                 disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 1}
-                                                value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][3]}
-                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1,3)}
-                                                placeholder={possibleGoals[1].prompt[3]}
+                                                value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][2]}
+                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1, 2)}
+                                                placeholder={possibleGoals[1].prompt[2]}
                                             />
                                         </Stack>
                                         <Stack flexDirection="row" alignItems="center">
                                             <Typography marginRight={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>so that</Typography>
                                             <TextField
+                                                fullWidth
                                                 disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 1}
-                                                value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][4]}
-                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1,4)}
-                                                placeholder={possibleGoals[1].prompt[4]}
+                                                value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][3]}
+                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1, 3)}
+                                                placeholder={possibleGoals[1].prompt[3]}
                                             />
                                             <Typography color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>.</Typography>
                                         </Stack>
@@ -243,7 +236,7 @@ const Goals = () => {
                                     index={index}
                                     goal={currentGoal}
                                     key={"possibleObjective" + index}
-                                    />
+                                />
                             )
                         }
                     </Box>
