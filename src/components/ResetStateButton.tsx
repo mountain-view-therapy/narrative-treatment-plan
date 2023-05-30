@@ -15,11 +15,12 @@ const ResetStateButton = () => {
 
 
     const handleClick = () => {
+        nav("/plan-logistics");
+
         resetNoteState()
         setSnackbarOpen(true)
         setDialogOpen(false)
-        nav("/plan-logistics");
-        window.location.reload();
+
     }
 
     return (

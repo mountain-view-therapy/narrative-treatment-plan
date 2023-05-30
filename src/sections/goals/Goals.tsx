@@ -1,4 +1,4 @@
-import { AppBar, Box, Toolbar, Stack, Tab, Tabs, Typography, FormLabel, RadioGroup, FormControlLabel, Radio, TextField, Checkbox, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { AppBar, Box, Toolbar, Stack, Tab, Tabs, Typography, FormLabel, RadioGroup, FormControlLabel, Radio, TextField, Checkbox, Select, MenuItem } from "@mui/material";
 import { Container } from "@mui/system";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
@@ -8,7 +8,6 @@ import { IGoal } from "../../models/GoalModel.mst";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Objective from "./Objective";
-import Goal from "./Goal";
 
 const Goals = () => {
     const { treatmentPlan: {

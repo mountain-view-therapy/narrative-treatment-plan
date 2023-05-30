@@ -13,15 +13,7 @@ const RootModel = types
         self.currentTab = tab
       },
       resetNoteState(): void {
-        //window.localStorage.clear()
-        window.localStorage.removeItem('root3')
-        window.localStorage.clear()
-
         self.treatmentPlan = TreatmentPlanModel.create(initialState.treatmentPlan)
-        window.localStorage.clear()
-        window.localStorage.removeItem('root3')
-        // window.localStorage.clear()
-
       },
     }
   })

@@ -14,7 +14,7 @@ persist('root3', root, {
   jsonify: false,  // if you use AsyncStorage, this shoud be true
   // default: true
   // whitelist: ['name']  // only these keys will be persisted
-}).then(() => console.log('Information has been hydrated'))
+}).then(() => console.log('Information has been hydrated' + new Date()))
 
 const StateContext = React.createContext<IRoot>(root);
 
