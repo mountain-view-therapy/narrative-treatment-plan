@@ -1,4 +1,4 @@
-import { AppBar, Box, Toolbar, Stack, Tab, Tabs, Typography, FormLabel, RadioGroup, FormControlLabel, Radio, TextField, Checkbox } from "@mui/material";
+import { AppBar, Box, Toolbar, Stack, Tab, Tabs, Typography, FormLabel, RadioGroup, FormControlLabel, Radio, TextField, Checkbox, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { Container } from "@mui/system";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
@@ -81,7 +81,7 @@ const Goals = () => {
                                         onClick={(e) => handleAdd(e)}
                                         label="+"
                                         disabled={goal3.active}
-                                        style={{ fontWeight: 'bold', fontSize: '20px', color: goal3.active ? '#1976d2' : 'white' }}
+                                        style={{ fontWeight: 'bold', fontSize: '20px', color: goal3.active ? '#027d24' : 'white' }}
                                     />
                                 </Tabs>
                             </Toolbar>
@@ -131,10 +131,15 @@ const Goals = () => {
                                     <Stack flexDirection="column" marginLeft={5} width={10000}>
 
                                         <Stack flexDirection="row" alignItems="center">
-                                            <Typography marginRight={1} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>Change the relationship with {currentGoal.issue}</Typography>
+                                            <Typography marginRight={1} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>
+                                                Change the relationship with {currentGoal.issue} to reduce the frequency, intensity and duration of its effects
+                                            </Typography>
                                         </Stack>
                                         <Stack flexDirection="row" alignItems="center">
-                                            <Typography marginRight={1} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>to reduce the frequency, intensity and duration of its effects relation to </Typography>
+
+                                            <Typography width={200} marginRight={1} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>
+                                                in relation to
+                                            </Typography>
 
                                             <TextField
                                                 fullWidth
@@ -145,7 +150,9 @@ const Goals = () => {
                                             />
                                         </Stack>
                                         <Stack flexDirection="row" alignItems="center">
-                                            <Typography marginRight={1} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>so that </Typography>
+                                            <Typography width={100} marginRight={1} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>
+                                                so that
+                                            </Typography>
 
 
                                             <TextField
@@ -171,26 +178,32 @@ const Goals = () => {
                                     <Stack flexDirection="column" marginLeft={5} spacing={1} width={10000}>
 
                                         <Stack flexDirection="row" alignItems="center" justifyContent="space-evenly">
-                                            <TextField
-                                                fullWidth
-                                                disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 1}
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
                                                 value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][0]}
                                                 onChange={(e) => currentGoal.setReplacementText(e.target.value, 1, 0)}
-                                                placeholder={possibleGoals[1].prompt[0]}
-                                            />
+                                            >
+                                                <MenuItem value="Reduce">Reduce</MenuItem>
+                                                <MenuItem value="Increase">Increase</MenuItem>
+                                            </Select>
                                             <Typography marginLeft={5}> </Typography>
-                                            <TextField
-                                                fullWidth
-                                                disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 1}
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
                                                 value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][1]}
                                                 onChange={(e) => currentGoal.setReplacementText(e.target.value, 1, 1)}
-                                                placeholder={possibleGoals[1].prompt[1]}
-                                            />
+                                            >
+                                                <MenuItem value="Frequency">Frequency</MenuItem>
+                                                <MenuItem value="Intensity">Intensity</MenuItem>
+                                                <MenuItem value="Duration">Duration</MenuItem>
+                                            </Select>
+
+                                            <Typography width={320} marginLeft={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 1 ? "black" : "gray"}>of {currentGoal.issue}</Typography>
                                         </Stack>
                                         <Stack flexDirection="row" alignItems="center">
-                                            <Typography marginRight={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>of {currentGoal.issue}</Typography>
+                                            <Typography marginRight={3} width={120} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 1 ? "black" : "gray"}>in relation to</Typography>
 
-                                            <Typography marginRight={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>in relation to</Typography>
                                             <TextField
                                                 fullWidth
                                                 disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 1}
@@ -200,7 +213,7 @@ const Goals = () => {
                                             />
                                         </Stack>
                                         <Stack flexDirection="row" alignItems="center">
-                                            <Typography marginRight={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>so that</Typography>
+                                            <Typography width={100} marginRight={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 0 ? "black" : "gray"}>so that</Typography>
                                             <TextField
                                                 fullWidth
                                                 disabled={currentGoal.possibleGoalSelectionState !== "SELECTED" || currentGoal.possibleGoalsIndex !== 1}

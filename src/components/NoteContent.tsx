@@ -66,7 +66,7 @@ const NoteContent = () => {
 
             <div>
                 <b>First Date of Service: </b>
-                {firstDateOfService.toDateString()}
+                {firstDateOfService.toLocaleDateString()}
             </div>
 
             <div>
@@ -160,7 +160,7 @@ const NoteContent = () => {
                                 <>
                                     {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, [], goal1.issue)}
                                     <ul>
-                                        {!goal1.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li>{replaceText(text, [],)}</li>)}
+                                        {!goal1.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li key={text}>{replaceText(text, [],)}</li>)}
                                     </ul>
                                     <ul>
                                         {!goal2.updatingGoal && objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
@@ -168,7 +168,7 @@ const NoteContent = () => {
                                             <li>
                                                 {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
                                                 <ul>
-                                                    {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+                                                    {objective.stillWorkingProgressions.map(progressionIdx => <li key={possibleProgressions[progressionIdx].text}>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
                                                 </ul>
                                             </li>
@@ -177,7 +177,7 @@ const NoteContent = () => {
                                             <li>
                                                 {replaceText(possibleObjectives[index].options["Finished"].text, [])}
                                                 <ul>
-                                                    {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+                                                    {objective.finshedProgressions.map(progressionIdx => <li key={possibleProgressions[progressionIdx].text}>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
                                                 </ul>
                                             </li>
@@ -191,7 +191,7 @@ const NoteContent = () => {
 
                         </>
                     }
-                    {goal1.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal1.estimatedCompletionDate.toDateString()}</p>}
+                    {goal1.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal1.estimatedCompletionDate.toLocaleDateString()}</p>}
 
                     {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 2:</p>}
                     {
@@ -210,7 +210,7 @@ const NoteContent = () => {
                                 <>
                                     {replaceText(possibleObjectives[objective.possibleObjectiveIndex].title, goal2.replacementText[0], goal2.issue)}
                                     <ul>
-                                        {!goal2.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li>{replaceText(text, [],)}</li>)}
+                                        {!goal2.updatingGoal && possibleObjectives[objective.possibleObjectiveIndex].objectiveText.map(text => <li key={text}>{replaceText(text, [],)}</li>)}
                                     </ul>
                                     <ul>
                                         {!goal2.updatingGoal && objective.noProgressChecked && <li>{replaceText(possibleObjectives[index].options["No Progress"].text, [])}</li>}
@@ -218,7 +218,7 @@ const NoteContent = () => {
                                             <li>
                                                 {replaceText(possibleObjectives[index].options["Still Working"].text, [])}
                                                 <ul>
-                                                    {objective.stillWorkingProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+                                                    {objective.stillWorkingProgressions.map(progressionIdx => <li key={possibleProgressions[progressionIdx].text}>{replaceText(possibleProgressions[progressionIdx].text, [objective.stillWorkingProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
                                                 </ul>
                                             </li>
@@ -227,7 +227,7 @@ const NoteContent = () => {
                                             <li>
                                                 {replaceText(possibleObjectives[index].options["Finished"].text, [])}
                                                 <ul>
-                                                    {objective.finshedProgressions.map(progressionIdx => <li>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
+                                                    {objective.finshedProgressions.map(progressionIdx => <li key={possibleProgressions[progressionIdx].text}>{replaceText(possibleProgressions[progressionIdx].text, [objective.finshedProgressionsReplacementText.get(progressionIdx.toString()) || ""])}</li>)}
 
                                                 </ul>
                                             </li>
@@ -239,7 +239,7 @@ const NoteContent = () => {
                             }
                         </>
                     }
-                    {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal2.estimatedCompletionDate.toDateString()}</p>}
+                    {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal2.estimatedCompletionDate.toLocaleDateString()}</p>}
 
                     {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 3:</p>}
                     {
@@ -287,7 +287,7 @@ const NoteContent = () => {
                             }
                         </>
                     }
-                    {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal3.estimatedCompletionDate.toDateString()}</p>}
+                    {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal3.estimatedCompletionDate.toLocaleDateString()}</p>}
 
                 </>
             }
