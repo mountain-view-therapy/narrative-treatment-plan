@@ -263,8 +263,8 @@ export const possibleGoals = [
     {
         text: "Change the relationship with [ISSUE] to reduce the frequency, intensity and duration of its effects relation to [REPLACEMENT1] so that [REPLACEMENT2].",
         prompt: [
-            "how would person served see their life improved",
             "specify where issue effects persons life: work, community, personal relationships",
+            "how would person served see their life improved",
         ]
     },
     {
