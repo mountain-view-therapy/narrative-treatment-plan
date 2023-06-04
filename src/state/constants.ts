@@ -239,7 +239,7 @@ export const possibleObjectives =
     ]
 
 export type PossibleObjective = typeof possibleObjectives[number]
-
+export type PossibleProgression = typeof possibleObjectives[number]["options"]["Still Working"]["progressions"][number] | typeof possibleObjectives[number]["options"]["Finished"]["progressions"][number]
 
 
 export type PossibleAnxietySymptom = typeof possibleSymptoms["F41.1 Generalized Anxiety Disorder"][number]
@@ -279,75 +279,6 @@ export const possibleGoals = [
 ]
 
 export type PossibleGoal = typeof possibleGoals[number]
-
-
-export const possibleProgressions = [
-    { text: "[CLIENT] consistently speaks about [ISSUE] in externalized language during therapy meetings." },
-    {
-        text: "[CLIENT] identified and verbalized an experience near name for the problem, [REPLACEMENT1].",
-        prompt: "[state name]",
-    },
-    {
-        text: "[CLIENT] identified and verbalized effects of [ISSUE] including [REPLACEMENT1].",
-        prompt: "[list effects identified]",
-    },
-    {
-        text: "[CLIENT] identified and verbalized tactics used by [ISSUE] including [REPLACEMENT1].",
-        prompt: "[list tactics identified]"
-    },
-    {
-        text: "[CLIENT] developed and practiced strategies that counter the effects and tactics of [ISSUE] including [REPLACEMENT1].",
-        prompt: "[list strategies]"
-    },
-    {
-        text: "[CLIENT] identified and verbalized past experiences that support or sustain the problematic relationship with [ISSUE] including [REPLACEMENT1].",
-        prompt: "[name experiences]",
-    },
-    {
-        text: "[CLIENT] identified and verbalized cultural discourses that support and sustain their relationship with [ISSUE] including [REPLACEMENT1].",
-        prompt: "[name discourses]",
-    },
-    {
-        text: "[CLIENT] identified and verbalized a rich description of their values/preferences in relationship to [ISSUE] including [REPLACEMENT1].",
-        prompt: "[name values/preferences]",
-    },
-    { text: "[CLIENT] named and richly described a re-authored preferred narrative that supports their stated values/preferences and does not support [ISSUE]’s narrative." },
-    {
-        text: "[CLIENT] identified and verbalized actions they have taken to support their preferred narrative including  [REPLACEMENT1].",
-        prompt: "[list actions]",
-    },
-    {
-        text: "[CLIENT] identified [REPLACEMENT1] as a person who will support their preferred narrative.",
-        prompt: "[name person]",
-    },
-    {
-        text: "[CLIENT]  connected with [REPLACEMENT1] to help support their preferred narrative.",
-        prompt: "[name person]."
-    },
-    {
-        text: "[CLIENT] identified and verbalized past experiences that support their preferred narrative including [REPLACEMENT1].",
-        prompt: "[list experiences]",
-    },
-    {
-        text: "[CLIENT] identified and verbalized situations that support their preferred narrative including [REPLACEMENT1].",
-        prompt: "[list situations]",
-    },
-    {
-        text: "[CLIENT] identified and verbalized cultural discourses that support their preferred narrative including [REPLACEMENT1].",
-        prompt: "[list discourses]",
-    },
-    {
-        text: "[CLIENT] learned and implemented behavioral strategies to exert acute control over relationship with [ISSUE] including [REPLACEMENT1].",
-        prompt: "[list strategies].",
-    },
-    {
-        text: "[CLIENT] reported connection to their preferred stories as a means to decrease the [ISSUE]’s influence.",
-    },
-]
-
-export type PossibleProgression = typeof possibleProgressions[number]
-
-
 
 export const possibleInterventions = [
     { text: "Use and promote Narrative practice of externalized language to give [CLIENT] space to take a position on their relationship with [ISSUE]." },
