@@ -314,7 +314,7 @@ export const initialState = {
             firstDateOfService: new Date(),
             modalityPlanned: modalities[0],
             meetingFrequency: frequency[0],
-            treatmentLength: length[0],
+            treatmentLength: length[1],
             otherTreatmentLength: "",
             otherMeetingFrequency: "",
         },
