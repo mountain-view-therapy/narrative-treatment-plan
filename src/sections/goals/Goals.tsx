@@ -8,6 +8,7 @@ import { IGoal } from "../../models/GoalModel.mst";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Objective from "./Objective";
+import { array } from "mobx-state-tree/dist/internal";
 
 const Goals = () => {
     const { treatmentPlan: {
@@ -182,6 +183,7 @@ const Goals = () => {
                                                 id="demo-simple-select"
                                                 value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][0]}
                                                 onChange={(e) => currentGoal.setReplacementText(e.target.value, 1, 0)}
+                                                style={{width: 150}}
                                             >
                                                 <MenuItem value="Reduce">Reduce</MenuItem>
                                                 <MenuItem value="Increase">Increase</MenuItem>
@@ -190,12 +192,19 @@ const Goals = () => {
                                             <Select
                                                 labelId="demo-simple-select-label"
                                                 id="demo-simple-select"
-                                                value={currentGoal.possibleGoalsIndex !== 1 ? "" : currentGoal.replacementText[1][1]}
-                                                onChange={(e) => currentGoal.setReplacementText(e.target.value, 1, 1)}
+                                                value={currentGoal.possibleGoalsIndex !== 1 ? [] : currentGoal.replacementText[1][1].split(" ")}
+                                                onChange={(e) => currentGoal.setReplacementText(Array.isArray(e.target.value) ? e.target.value.join(" ") : e.target.value, 1, 1)}
+                                                multiple
+                                                style={{width: 300}}
                                             >
-                                                <MenuItem value="Frequency">Frequency</MenuItem>
-                                                <MenuItem value="Intensity">Intensity</MenuItem>
-                                                <MenuItem value="Duration">Duration</MenuItem>
+                                                {['Frequency', 'Intensity', 'Duration'].map((name) => (
+                                                    <MenuItem
+                                                        key={name}
+                                                        value={name}
+                                                    >
+                                                        {name}
+                                                    </MenuItem>
+                                                ))}
                                             </Select>
 
                                             <Typography width={320} marginLeft={5} color={currentGoal.possibleGoalSelectionState === "SELECTED" && currentGoal.possibleGoalsIndex === 1 ? "black" : "gray"}>of {currentGoal.issue}</Typography>
@@ -261,7 +270,7 @@ const Goals = () => {
                     <DatePicker
                         aria-labelledby="first-date-of-service-label"
                         onChange={(date) => currentGoal.setEstimatedCompletionDate(date || new Date())}
-                        selected={currentGoal.completed? new Date() : currentGoal.estimatedCompletionDate}
+                        selected={currentGoal.completed ? new Date() : currentGoal.estimatedCompletionDate}
                     />
 
                     <FormLabel id="goal-completed">
