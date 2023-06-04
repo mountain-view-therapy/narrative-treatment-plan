@@ -254,14 +254,24 @@ const Goals = () => {
                     </Box>
 
                 </>
-                <Stack flexDirection="row" spacing={1} >
+                <Stack flexDirection="row" spacing={1} alignItems="center">
                     <FormLabel id="first-date-of-service-label">
-                        Estimated Date of Completion
+                        {!currentGoal.completed && <Typography>Estimated</Typography>} Date of Completion
                     </FormLabel>
                     <DatePicker
                         aria-labelledby="first-date-of-service-label"
-                        selected={currentGoal.estimatedCompletionDate}
                         onChange={(date) => currentGoal.setEstimatedCompletionDate(date || new Date())}
+                        selected={currentGoal.completed? new Date() : currentGoal.estimatedCompletionDate}
+                    />
+
+                    <FormLabel id="goal-completed">
+                        Completed?
+                    </FormLabel>
+
+                    <Checkbox
+                        aria-labelledby="goal-completed"
+                        checked={currentGoal.completed === true}
+                        onChange={(e) => currentGoal.setCompleted(e.target.checked)}
                     />
                 </Stack>
             </Box>

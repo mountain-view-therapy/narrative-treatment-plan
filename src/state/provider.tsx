@@ -8,7 +8,7 @@ import { initialState } from './constants';
 export const root = RootModel.create(initialState)
 
 
-persist('root4', root, {
+persist('root5', root, {
   storage: localForage,  // or AsyncStorage in react-native.
   // default: localStorage
   jsonify: false,  // if you use AsyncStorage, this shoud be true

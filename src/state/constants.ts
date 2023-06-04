@@ -375,6 +375,7 @@ export const initialState = {
             active: true,
             initiatedAt: new Date(),
             estimatedCompletionDate: new Date((new Date()).setMonth((new Date()).getMonth() + 6)),
+            completed: false,
         },
         goal2: {
             possibleGoalsIndex: 0,
@@ -385,6 +386,7 @@ export const initialState = {
             active: false,
             initiatedAt: new Date(),
             estimatedCompletionDate: new Date((new Date()).setMonth((new Date()).getMonth() + 6)),
+            completed: false,
         },
         goal3: {
             possibleGoalsIndex: 0,
@@ -395,6 +397,7 @@ export const initialState = {
             active: false,
             initiatedAt: new Date(),
             estimatedCompletionDate: new Date((new Date()).setMonth((new Date()).getMonth() + 6)),
+            completed: false,
         },
     },
     currentTab: "/meeting-logstics",

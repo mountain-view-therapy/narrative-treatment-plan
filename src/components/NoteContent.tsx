@@ -187,7 +187,7 @@ const NoteContent = () => {
 
                         </>
                     }
-                    {goal1.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal1.estimatedCompletionDate.toLocaleDateString()}</p>}
+                    {goal1.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>{!goal1.completed && <span>Estimated</span>}  Completion Date: {goal1.completed ? new Date().toLocaleDateString(): goal1.estimatedCompletionDate.toLocaleDateString()}</p>}
 
                     {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 2:</p>}
                     {
@@ -235,7 +235,7 @@ const NoteContent = () => {
 
                         </>
                     }
-                    {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal2.estimatedCompletionDate.toLocaleDateString()}</p>}
+                    {goal2.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>{!goal2.completed && <span>Estimated</span>} Completion Date: {goal2.completed ? new Date().toLocaleDateString():goal2.estimatedCompletionDate.toLocaleDateString()}</p>}
                     {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p>Goal 3:</p>}
                     {
                         goal3.possibleGoalSelectionState === 'SELECTED' &&
@@ -282,7 +282,7 @@ const NoteContent = () => {
 
                         </>
                     }
-                    {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>Estimated Completion Date: {goal3.estimatedCompletionDate.toLocaleDateString()}</p>}
+                    {goal3.possibleGoalSelectionState !== 'UNSELECTED' && <p style={{ paddingLeft: 15 }}>{!goal3.completed && <span>Estimated</span>}  Completion Date: {goal3.completed ? new Date().toLocaleDateString(): goal3.estimatedCompletionDate.toLocaleDateString()}</p>}
 
                 </>
             }

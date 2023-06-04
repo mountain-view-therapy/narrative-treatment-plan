@@ -15,6 +15,7 @@ const GoalModel = types.model('GoalModel', {
     estimatedCompletionDate: types.Date,
     objectives: types.array(ObjectiveModel),
     updatingGoal: false,
+    completed: false,
 }).actions((self) => {
     return {
         setIssue(issue: string): void {
@@ -65,7 +66,7 @@ const GoalModel = types.model('GoalModel', {
             return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex) !== -1
         },
         isNoProgressChecked(objectiveIndex: number): boolean {
-            return  self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.noProgressChecked) !== -1
+            return self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex && objective.noProgressChecked) !== -1
 
         },
         isStillWorkingChecked(objectiveIndex: number): boolean {
@@ -146,12 +147,12 @@ const GoalModel = types.model('GoalModel', {
             const objective = getSnapshot(self.objectives[objectiveIndex])
 
             const replaceTexts = objective.stillWorkingProgressionsReplacementText // .set(index.toString(), text)
-            const newReplaceTexts = {...replaceTexts};
+            const newReplaceTexts = { ...replaceTexts };
             newReplaceTexts[index.toString()] = text
-            self.objectives.splice(objectiveIndex, 1, { ...objective, stillWorkingProgressionsReplacementText: {...newReplaceTexts}})
+            self.objectives.splice(objectiveIndex, 1, { ...objective, stillWorkingProgressionsReplacementText: { ...newReplaceTexts } })
         },
         getStillWorkingProgressionsReplacementText(objectiveIndex: number, index: number): string {
-            if (!self.objectives[objectiveIndex] ) { return ""}
+            if (!self.objectives[objectiveIndex]) { return "" }
 
             return self.objectives[objectiveIndex].stillWorkingProgressionsReplacementText.get(index.toString()) || ""
 
@@ -160,15 +161,18 @@ const GoalModel = types.model('GoalModel', {
             const objective = getSnapshot(self.objectives[objectiveIndex])
 
             const replaceTexts = objective.finshedProgressionsReplacementText // .set(index.toString(), text)
-            const newReplaceTexts = {...replaceTexts};
+            const newReplaceTexts = { ...replaceTexts };
             newReplaceTexts[index.toString()] = text
-            self.objectives.splice(objectiveIndex, 1, { ...objective, finshedProgressionsReplacementText: {...newReplaceTexts}})
+            self.objectives.splice(objectiveIndex, 1, { ...objective, finshedProgressionsReplacementText: { ...newReplaceTexts } })
         },
         getFinshedProgressionsReplacementText(objectiveIndex: number, index: number): string {
-            if (!self.objectives[objectiveIndex] ) { return ""}
+            if (!self.objectives[objectiveIndex]) { return "" }
 
             return self.objectives[objectiveIndex].finshedProgressionsReplacementText.get(index.toString()) || ""
 
+        },
+        setCompleted(completed: boolean): void {
+            self.completed = completed
         },
 
     }
