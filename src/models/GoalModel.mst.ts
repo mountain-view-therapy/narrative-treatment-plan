@@ -95,20 +95,33 @@ const GoalModel = types.model('GoalModel', {
             const index = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex)
             if (index === -1) { return }
             const objective = getSnapshot(self.objectives[index])
-            self.objectives.splice(index, 1, { ...objective, noProgressChecked: value })
+            if (value === true) {
+                self.objectives.splice(index, 1, { ...objective, noProgressChecked: true, stillWorkingChecked: false, finishedChecked: false })
+            } else {
+                self.objectives.splice(index, 1, { ...objective, noProgressChecked: false })
+
+            }
         },
         setStillWorkingChecked(objectiveIndex: number, value: boolean): void {
             const index = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex)
             if (index === -1) { return }
             const objective = getSnapshot(self.objectives[index])
-            self.objectives.splice(index, 1, { ...objective, stillWorkingChecked: value })
-        },
+            if (value === true) {
+                self.objectives.splice(index, 1, { ...objective, noProgressChecked: false, stillWorkingChecked: true, finishedChecked: false })
+            } else {
+                self.objectives.splice(index, 1, { ...objective, stillWorkingChecked: false })
+
+            }        },
         setFinishedChecked(objectiveIndex: number, value: boolean): void {
             const index = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndex)
             if (index === -1) { return }
             const objective = getSnapshot(self.objectives[index])
-            self.objectives.splice(index, 1, { ...objective, finishedChecked: value })
-        },
+            if (value === true) {
+                self.objectives.splice(index, 1, { ...objective, noProgressChecked: false, stillWorkingChecked: false, finishedChecked: true })
+            } else {
+                self.objectives.splice(index, 1, { ...objective, finishedChecked: false })
+
+            }        },
         setStillWorkingProgressionChecked(objectiveIndexIn: number, progressionIndexIn: number, value: boolean): void {
             const objectiveIndex = self.objectives.findIndex(objective => objective.possibleObjectiveIndex === objectiveIndexIn)
             if (objectiveIndex === -1) { return }
