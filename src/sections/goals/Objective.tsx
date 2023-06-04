@@ -16,12 +16,14 @@ const Objective = ({ goal, objective, index }: Props) => {
 
     const { treatmentPlan } = getState()
 
-    const replaceText = (text: string) => {
-        return text
-            .replace(/\[ISSUE\]/g, goal.issue || '[ISSUE]')
+    const replaceText = (text: string, replacementText: string[], issue?: string) => {
+        return text.replace(/\[ISSUE\]/g, issue || '[ISSUE]')
             .replace(/\[CLIENT\]/g, treatmentPlan.planLogistics.clientInitials || '[CLIENT]')
-            .replace('[REPLACEMENT1]', goal.replacementText[0][0] || '[REPLACEMENT1]')
-            .replace('[REPLACEMENT2]', goal.replacementText[1][0] || '[REPLACEMENT2]')
+            .replace('[REPLACEMENT1]', replacementText[0])
+            .replace('[REPLACEMENT2]', replacementText[1])
+            .replace('[REPLACEMENT3]', replacementText[2])
+            .replace('[REPLACEMENT4]', replacementText[3])
+            .replace('[REPLACEMENT5]', replacementText[4])
     }
 
     const checked = Boolean(goal.objectives.find(selected => index === selected.possibleObjectiveIndex))
@@ -36,7 +38,7 @@ const Objective = ({ goal, objective, index }: Props) => {
                 <Stack>
                     <Typography
                         color={goal.isObjectiveChecked(index) ? "black" : "gray"}>
-                        {replaceText(objective.title)}
+                        {replaceText(objective.title, [], goal.issue)}
                     </Typography>
                     {
                         goal.updatingGoal &&
@@ -46,7 +48,7 @@ const Objective = ({ goal, objective, index }: Props) => {
                                     checked={goal.isNoProgressChecked(index)}
                                     onChange={(e) => goal.setNoProgressChecked(index, e.target.checked)}
                                 />
-                                <Typography>{replaceText(objective.options["No Progress"].text)}</Typography>
+                                <Typography>{replaceText(objective.options["No Progress"].text,[], goal.issue)}</Typography>
 
 
                             </Stack>
@@ -55,7 +57,7 @@ const Objective = ({ goal, objective, index }: Props) => {
                                     checked={goal.isStillWorkingChecked(index)}
                                     onChange={(e) => goal.setStillWorkingChecked(index, e.target.checked)}
                                 />
-                                <Typography>{replaceText(objective.options["Still Working"].text)}</Typography>
+                                <Typography>{replaceText(objective.options["Still Working"].text,[], goal.issue)}</Typography>
 
                             </Stack>
                             <Stack>
@@ -69,7 +71,7 @@ const Objective = ({ goal, objective, index }: Props) => {
                                             <Stack>
                                                 <Typography
                                                     color={goal.isStillWorkingProgressionChecked(index, stillWorkingProgressionsIndex) ? "black" : "gray"}>
-                                                    {progression.text ? replaceText(progression.text) : progression.text}
+                                                    {replaceText(progression.text, [goal.getStillWorkingProgressionsReplacementText(index, stillWorkingProgressionsIndex) ?? ""], goal.issue)}
                                                 </Typography>
                                                 {goal.objectives[index] && progression.prompt &&
                                                     <TextField
@@ -90,7 +92,7 @@ const Objective = ({ goal, objective, index }: Props) => {
                                     checked={goal.isFinishedChecked(index)}
                                     onChange={(e) => goal.setFinishedChecked(index, e.target.checked)}
                                 />
-                                <Typography>{replaceText(objective.options["Finished"].text)}</Typography>
+                                <Typography>{replaceText(objective.options["Finished"].text,[], goal.issue)}</Typography>
                             </Stack>
                             <Stack>
                                 {
@@ -103,7 +105,7 @@ const Objective = ({ goal, objective, index }: Props) => {
                                             <Stack>
                                                 <Typography
                                                     color={goal.isFinishedProgressionChecked(index, finishedProgressionIndex) ? "black" : "gray"}>
-                                                    {progression.text ? replaceText(progression.text) : progression.text}
+                                                    {replaceText(progression.text, [goal.getFinshedProgressionsReplacementText(index, finishedProgressionIndex) ?? ""], goal.issue)}
                                                 </Typography>
                                                 {goal.objectives[index] && progression.prompt &&
                                                     <TextField

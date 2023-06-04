@@ -151,7 +151,9 @@ const GoalModel = types.model('GoalModel', {
             self.objectives.splice(objectiveIndex, 1, { ...objective, stillWorkingProgressionsReplacementText: {...newReplaceTexts}})
         },
         getStillWorkingProgressionsReplacementText(objectiveIndex: number, index: number): string {
-            return self.objectives[objectiveIndex].stillWorkingProgressionsReplacementText.get(index.toExponential.toString()) || ""
+            if (!self.objectives[objectiveIndex] ) { return ""}
+
+            return self.objectives[objectiveIndex].stillWorkingProgressionsReplacementText.get(index.toString()) || ""
 
         },
         setFinshedProgressionsReplacementText(objectiveIndex: number, text: string, index: number): void {
@@ -163,6 +165,8 @@ const GoalModel = types.model('GoalModel', {
             self.objectives.splice(objectiveIndex, 1, { ...objective, finshedProgressionsReplacementText: {...newReplaceTexts}})
         },
         getFinshedProgressionsReplacementText(objectiveIndex: number, index: number): string {
+            if (!self.objectives[objectiveIndex] ) { return ""}
+
             return self.objectives[objectiveIndex].finshedProgressionsReplacementText.get(index.toString()) || ""
 
         },
