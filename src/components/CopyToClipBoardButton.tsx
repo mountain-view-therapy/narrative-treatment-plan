@@ -24,7 +24,7 @@ const CopyToClipboardButton = () => {
                 onClick={handleClick}
                 // disabled={!startTime || !endTime}
                 >
-                Copy Note
+                Copy Plan
             </Button>
             <Snackbar
                 open={open}

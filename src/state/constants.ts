@@ -117,7 +117,7 @@ export const possibleEffectsOnFunctions = {
 export const possibleObjectives =
     [
         {
-            title: "[CLIENT] will demonstrate a clear vision for how [ISSUE] operates in their life. We will know this has been achieved when we have observed some of the following",
+            title: "[CLIENT] will demonstrate a clear vision for how [ISSUE] operates in their life. We will know this has been achieved when we have observed some of the following:",
             objectiveText: [
                 "[CLIENT] uses externalized language consistently in meetings",
                 "[CLIENT] has given the problem an experience near name",
@@ -161,9 +161,9 @@ export const possibleObjectives =
             },
         },
         {
-            title: "[CLIENT] will develop a vision, or preferred narrative, for their life that has reduced the presence or role of [ISSUE]. We will know that this has been achieved when we have observed some of the following",
+            title: "[CLIENT] will develop a vision, or preferred narrative, for their life that has reduced the presence or role of [ISSUE]. We will know that this has been achieved when we have observed some of the following:",
             objectiveText: [
-                "[CLIENT] can richly describes times when the problem has less influence",
+                "[CLIENT] can richly describe times when [ISSUE] has less influence",
                 "[CLIENT] identifies actions they have taken that fit with their preferred narrative",
                 "[CLIENT] identifies different situations and people who will support their preferred narrative",
                 "[CLIENT] identifies past experiences that fit with their preferred narrative",
@@ -177,7 +177,7 @@ export const possibleObjectives =
                 "Still Working": {
                     text: "[CLIENT] continues to work towards developing a preferred narrative for their life that reduces the presence and or role of [ISSUE]. The following has been observed:",
                     progressions: [
-                        { text: "[CLIENT] has richly describes times when the problem has less influence including [REPLACEMENT1].", prompt: "name experiences" },
+                        { text: "[CLIENT] has richly describe times when the problem has less influence including [REPLACEMENT1].", prompt: "name experiences" },
                         { text: "[CLIENT] has identified actions they have taken that support their preferred narrative including [REPLACEMENT1].", prompt: "name actions" },
                         { text: "[CLIENT] has identified different situations and/or people who will support their preferred narrative including [REPLACEMENT1].", prompt: "name situations or people" },
                         { text: "[CLIENT] identified past experiences including [REPLACEMENT1] that support their preferred narrative.", prompt: "name past experiences" },
@@ -189,7 +189,7 @@ export const possibleObjectives =
                 "Finished": {
                     text: "[CLIENT] has developed a preferred narrative for their life that has reduced the presence and/or role of [ISSUE]. The following has been observed:",
                     progressions: [
-                        { text: "[CLIENT] has richly describes times when the problem has less influence including [REPLACEMENT1].", prompt: "name experiences" },
+                        { text: "[CLIENT] has richly describe times when the problem has less influence including [REPLACEMENT1].", prompt: "name experiences" },
                         { text: "[CLIENT] has identified actions they have taken that support their preferred narrative including [REPLACEMENT1].", prompt: "name actions" },
                         { text: "[CLIENT] has identified different situations and/or people who will support their preferred narrative including [REPLACEMENT1].", prompt: "name situations or people" },
                         { text: "[CLIENT] identified past experiences including [REPLACEMENT1] that support their preferred narrative.", prompt: "name past experiences" },
@@ -200,7 +200,7 @@ export const possibleObjectives =
             }
         },
         {
-            title: "[CLIENT] will maintain a connection with their preferred narrative that reduces the presence and/or role of the [ISSUE] in their life. We will know that this has been achieved when we have observed some of the following",
+            title: "[CLIENT] will maintain a connection with their preferred narrative that reduces the presence and/or role of the [ISSUE] in their life. We will know that this has been achieved when we have observed some of the following:",
             objectiveText: [
                 "[CLIENT] will consistently use their strategies for countering [ISSUE]",
                 "[CLIENT] will regularly report in meetings about how they have countered [ISSUE]",

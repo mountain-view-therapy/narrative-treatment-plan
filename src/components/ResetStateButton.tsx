@@ -25,7 +25,7 @@ const ResetStateButton = () => {
 
     return (
         <>
-            <Button variant='contained' onClick={() => setDialogOpen(true)}>Reset Note</Button>
+            <Button variant='contained' onClick={() => setDialogOpen(true)}>Reset Plan</Button>
             <Dialog
                 open={dialogOpen}
                 onClose={() => setDialogOpen(false)}
@@ -37,13 +37,13 @@ const ResetStateButton = () => {
                             variant='contained'
                             onClick={() => handleClick()}
                         >
-                            Reset Note
+                            Reset Plan
                         </Button>
                         <Button
                             variant='contained'
                             onClick={() => setDialogOpen(false)}
                         >
-                            Dont Reset Note
+                            Dont Reset Plan
                         </Button>
                     </Stack>
                 </Box>
