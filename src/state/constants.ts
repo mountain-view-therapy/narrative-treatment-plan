@@ -123,9 +123,9 @@ export const possibleObjectives =
                 "[CLIENT] has given the problem an experience near name",
                 "[CLIENT] describes the effects and tactics of [ISSUE]",
                 "[CLIENT] describes their history with [ISSUE]",
-                "[CLIENT] identified and describes people and situations that support [ISSUE]",
-                "[CLIENT] has identified and describes cultural discourses that support [ISSUE]",
-                "[CLIENT] can name and richly describes their values and preferences in relation to [ISSUE] and/or can describe about some action they have taken to counter [ISSUE].",
+                "[CLIENT] has identified and described their connection to people and situations that support [ISSUE]",
+                "[CLIENT] has identified and described cultural discourses that support [ISSUE]",
+                "[CLIENT] can name and richly describe their values and preferences in relation to [ISSUE] and/or can describe some action they have taken to counter [ISSUE].",
             ],
             options: {
                 "No Progress": {
@@ -202,8 +202,8 @@ export const possibleObjectives =
         {
             title: "[CLIENT] will maintain a connection with their preferred narrative that reduces the presence and/or role of the [ISSUE] in their life. We will know that this has been achieved when we have observed some of the following",
             objectiveText: [
-                "[CLIENT] will consistently uses their strategies for countering [ISSUE]",
-                "[CLIENT] will regularly reports in meetings about how they have countered [ISSUE]",
+                "[CLIENT] will consistently use their strategies for countering [ISSUE]",
+                "[CLIENT] will regularly report in meetings about how they have countered [ISSUE]",
                 "[CLIENT] will report they have recruited people to support their preferred narrative",
                 "[ISSUE] will take up less space in meetings and is replaced by accounts of living their preferred story",
                 "[CLIENT] describes themselves through the lens of their preferred story (as opposed to the lens of [ISSUE]).",
