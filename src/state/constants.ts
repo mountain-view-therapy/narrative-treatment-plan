@@ -117,7 +117,7 @@ export const possibleEffectsOnFunctions = {
 export const possibleObjectives =
     [
         {
-            title: "[CLIENT] will demonstrate a clear vision for how [ISSUE] operates in their life. We will know this has been achieved when we have observed some of the following:",
+            title: "[CLIENT] will demonstrate a clear vision for how [ISSUE] operates in their life. We will know this has been achieved when we have observed 3-5 of the following:",
             objectiveText: [
                 "[CLIENT] uses externalized language consistently in meetings",
                 "[CLIENT] has given the problem an experience near name",
@@ -161,7 +161,7 @@ export const possibleObjectives =
             },
         },
         {
-            title: "[CLIENT] will develop a vision, or preferred narrative, for their life that has reduced the presence or role of [ISSUE]. We will know that this has been achieved when we have observed some of the following:",
+            title: "[CLIENT] will develop a vision, or preferred narrative, for their life that has reduced the presence or role of [ISSUE]. We will know that this has been achieved when we have observed 3-5 of the following:",
             objectiveText: [
                 "[CLIENT] can richly describe times when [ISSUE] has less influence",
                 "[CLIENT] identifies actions they have taken that fit with their preferred narrative",
@@ -200,7 +200,7 @@ export const possibleObjectives =
             }
         },
         {
-            title: "[CLIENT] will maintain a connection with their preferred narrative that reduces the presence and/or role of the [ISSUE] in their life. We will know that this has been achieved when we have observed some of the following:",
+            title: "[CLIENT] will maintain a connection with their preferred narrative that reduces the presence and/or role of the [ISSUE] in their life. We will know that this has been achieved when we have observed 3-5 of the following:",
             objectiveText: [
                 "[CLIENT] will consistently use their strategies for countering [ISSUE]",
                 "[CLIENT] will regularly report in meetings about how they have countered [ISSUE]",
