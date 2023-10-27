@@ -197,7 +197,7 @@ const Goals = () => {
                                                 multiple
                                                 style={{width: 300}}
                                             >
-                                                {['Frequency', 'Intensity', 'Duration'].map((name) => (
+                                                {['frequency', 'intensity', 'duration'].map((name) => (
                                                     <MenuItem
                                                         key={name}
                                                         value={name}
