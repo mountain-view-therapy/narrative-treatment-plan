@@ -55,14 +55,8 @@ const NoteContent = () => {
         return text.replace('[CLIENT]', clientInitials)
     }
 
-    const formatObjectiveText = (text: string) => {
-        return text.replace(';', '<ul><li>').replace(',', '</li><li>') + "</li></ul>"
-    }
-
     return (
         <div>
-
-
             <div>
                 <b>First Date of Service: </b>
                 {firstDateOfService.toLocaleDateString()}

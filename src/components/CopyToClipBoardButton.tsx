@@ -1,20 +1,25 @@
 import { Button, Snackbar } from '@mui/material'
 import { useState } from 'react'
-import TurndownService from 'turndown'
 import { renderToString } from "react-dom/server";
 import NoteContent from './NoteContent';
 import { observer } from 'mobx-react-lite';
 
-const turndownService = new TurndownService()
 
 const CopyToClipboardButton = () => {
     const [open, setOpen] = useState(false)
 
-    const handleClick = () => {
+    const handleClick = async () => {
         setOpen(true)
         const html = renderToString(<NoteContent />)
-        const markdown = turndownService.turndown(html)
-        navigator.clipboard.writeText(markdown)
+        const htmlBlob = new Blob([html], { type: "text/html" })
+        const textBlob = new Blob([html.replace(/<[^>]*>/g, '').replace(';ensp;', '')], { type: "text/plain" })
+        const data = [
+            new ClipboardItem({
+                "text/html": htmlBlob,
+                "text/plain": textBlob,
+            }),
+        ]
+        await navigator.clipboard.write(data)
     }
 
     return (
@@ -22,8 +27,8 @@ const CopyToClipboardButton = () => {
             <Button
                 variant='contained'
                 onClick={handleClick}
-                // disabled={!startTime || !endTime}
-                >
+            // disabled={!startTime || !endTime}
+            >
                 Copy Plan
             </Button>
             <Snackbar

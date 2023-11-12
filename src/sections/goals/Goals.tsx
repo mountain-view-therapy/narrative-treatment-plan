@@ -8,7 +8,6 @@ import { IGoal } from "../../models/GoalModel.mst";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Objective from "./Objective";
-import { array } from "mobx-state-tree/dist/internal";
 
 const Goals = () => {
     const { treatmentPlan: {
